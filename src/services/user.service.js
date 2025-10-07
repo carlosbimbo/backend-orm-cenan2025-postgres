@@ -8,6 +8,7 @@ const findPersonById = async (id) => {
   return await db.Person.findByPk(id);
 };
 
+//aaa
 const createPerson = async ({ Name, Email }) => {
   const newPerson = await db.Person.create({ Name, Email });
   return newPerson;

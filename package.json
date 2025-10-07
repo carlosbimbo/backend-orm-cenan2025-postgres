@@ -1,0 +1,50 @@
+{
+  "name": "backend-orm-cenan2025",
+  "version": "1.0.0",
+  "description": "Proyecto backend Cenan2025",
+  "main": "index.js",
+  "readmeFilename": "README.md",
+  "private": false,
+  "keywords": [
+    "swagger",
+    "autogen",
+    "example",
+    "router"
+  ],
+  "author": {
+    "name": "Carlos Barrientos",
+    "email": "carlosbars8@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosbimbo/backend-orm-cpv2026.git"
+  },
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start-gendoc": "node ./src/config/swagger.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "config": "^3.3.10",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.17.1",
+    "http-status-codes": "^2.3.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.1",
+    "path": "^0.12.7",
+    "pg": "^8.12.0",
+    "pg-hstore": "^2.3.4",
+    "readme-md-generator": "^1.0.0",
+    "sequelize": "^6.37.3",
+    "swagger-autogen": "^2.23.4",
+    "swagger-ui-express": "^4.1.4",
+    "tedious": "^16.6.1"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
+  }
+}

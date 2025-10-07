@@ -1,0 +1,69 @@
+const db = require("../config/db");
+
+const getLevelMzaCpv0301det = async (id,codccpp,zona_id,manzana_id) => {
+  return await db.T_05_dig_cpv0301_det.findAll({ where: { ID: id,
+    CODCCPP: codccpp,
+    ZONA_ID: zona_id,
+    MANZANA_ID: manzana_id, }});
+};
+
+const getAllCpv0301det = async (id,codccpp, zona_id) => {
+  return await db.T_05_dig_cpv0301_det.findAll({ where: { ID: id,
+    CODCCPP: codccpp,
+    ZONA_ID: zona_id, }});
+};
+
+const findCpv0301detById = async (id,codccpp, zona_id, manzana_id, frente_id, dni, id_reg) => {
+  //console.log('findMzaById id : ' + id + ' - codccpp : ' + codccpp + ' - zona_id : ' + zona_id  + ' - manzana_id : ' + manzana_id)
+  return await db.T_05_dig_cpv0301_det.findOne({
+    where: {
+      ID: id,
+      CODCCPP: codccpp,
+      ZONA_ID: zona_id,
+      MANZANA_ID: manzana_id,
+      FRENTE_ID: frente_id, 
+      DNI: dni, 
+      ID_REG: id_reg 
+    }
+  });
+};
+
+const createCpv0301det = async ({ ID, CODCCPP, ZONA_ID, MANZANA_ID, FRENTE_ID, DNI, ID_REG, ID_LLAVE, FECHA, PERIODO_ID, P12_A, P12_B, P13_1, P13_2, P13_3, P13A_1, P13A_2, P13A_3, ULTIMA_EDIFICACION, P14, P14_A, CATEGORIA_VIA_R, CATEGORIA_VIA_R_O, NOM_VIA_R, REFERENCIA, P17, P17_A, P18, P19, P20, P20_A, P21, P22, P23_K, P24, P25, P25_1_NOMBRE, P25_2, C_MULTI, P26, P26_O, P26_9_O, P26_P, TOTAL_M, TOTAL_H, SEGMENTO_ID, SEGMENTO, P12_A_BCK, P12_B_BCK, RESFIN, RESFIN_O, ID_TABLET, DNI_INI, DNI_FIN, FECHA_EMP, P26_B, P26_B_VIV, OBS_REGISTRO, FECHA_INICIO, FECHA_FIN, USUCRE, FECCRE, USUREG, FECREG, FECENV, P14_RES, CATVIA_RES, CATVIA_RES_O, NOMVIA_RES, P26_9A }) => {
+  const newCpv0301det = await db.T_05_dig_cpv0301_det.create({ ID, CODCCPP, ZONA_ID, MANZANA_ID, FRENTE_ID, DNI, ID_REG, ID_LLAVE, FECHA, PERIODO_ID, P12_A, P12_B, P13_1, P13_2, P13_3, P13A_1, P13A_2, P13A_3, ULTIMA_EDIFICACION, P14, P14_A, CATEGORIA_VIA_R, CATEGORIA_VIA_R_O, NOM_VIA_R, REFERENCIA, P17, P17_A, P18, P19, P20, P20_A, P21, P22, P23_K, P24, P25, P25_1_NOMBRE, P25_2, C_MULTI, P26, P26_O, P26_9_O, P26_P, TOTAL_M, TOTAL_H, SEGMENTO_ID, SEGMENTO, P12_A_BCK, P12_B_BCK, RESFIN, RESFIN_O, ID_TABLET, DNI_INI, DNI_FIN, FECHA_EMP, P26_B, P26_B_VIV, OBS_REGISTRO, FECHA_INICIO, FECHA_FIN, USUCRE, FECCRE, USUREG, FECREG, FECENV, P14_RES, CATVIA_RES, CATVIA_RES_O, NOMVIA_RES, P26_9A });
+  return newCpv0301det;
+};
+
+const updateCpv0301det = async ({ ID, CODCCPP, ZONA_ID, MANZANA_ID, FRENTE_ID, DNI, ID_REG, ID_LLAVE, FECHA, PERIODO_ID, P12_A, P12_B, P13_1, P13_2, P13_3, P13A_1, P13A_2, P13A_3, ULTIMA_EDIFICACION, P14, P14_A, CATEGORIA_VIA_R, CATEGORIA_VIA_R_O, NOM_VIA_R, REFERENCIA, P17, P17_A, P18, P19, P20, P20_A, P21, P22, P23_K, P24, P25, P25_1_NOMBRE, P25_2, C_MULTI, P26, P26_O, P26_9_O, P26_P, TOTAL_M, TOTAL_H, SEGMENTO_ID, SEGMENTO, P12_A_BCK, P12_B_BCK, RESFIN, RESFIN_O, ID_TABLET, DNI_INI, DNI_FIN, FECHA_EMP, P26_B, P26_B_VIV, OBS_REGISTRO, FECHA_INICIO, FECHA_FIN, USUCRE, FECCRE, USUREG, FECREG, FECENV, P14_RES, CATVIA_RES, CATVIA_RES_O, NOMVIA_RES, P26_9A }) => {
+  await db.T_05_dig_cpv0301_det.update(
+    { ID, CODCCPP, ZONA_ID, MANZANA_ID, FRENTE_ID, DNI, ID_REG, ID_LLAVE, FECHA, PERIODO_ID, P12_A, P12_B, P13_1, P13_2, P13_3, P13A_1, P13A_2, P13A_3, ULTIMA_EDIFICACION, P14, P14_A, CATEGORIA_VIA_R, CATEGORIA_VIA_R_O, NOM_VIA_R, REFERENCIA, P17, P17_A, P18, P19, P20, P20_A, P21, P22, P23_K, P24, P25, P25_1_NOMBRE, P25_2, C_MULTI, P26, P26_O, P26_9_O, P26_P, TOTAL_M, TOTAL_H, SEGMENTO_ID, SEGMENTO, P12_A_BCK, P12_B_BCK, RESFIN, RESFIN_O, ID_TABLET, DNI_INI, DNI_FIN, FECHA_EMP, P26_B, P26_B_VIV, OBS_REGISTRO, FECHA_INICIO, FECHA_FIN, USUCRE, FECCRE, USUREG, FECREG, FECENV, P14_RES, CATVIA_RES, CATVIA_RES_O, NOMVIA_RES, P26_9A },
+    {
+      where: {
+        ID: ID,
+        CODCCPP: CODCCPP,
+        ZONA_ID: ZONA_ID,
+        MANZANA_ID: MANZANA_ID,
+        FRENTE_ID: FRENTE_ID, 
+        DNI: DNI, 
+        ID_REG: ID_REG 
+        
+      },
+    }
+  );
+  return { ID, CODCCPP, ZONA_ID, MANZANA_ID, FRENTE_ID, DNI, ID_REG, ID_LLAVE, FECHA, PERIODO_ID, P12_A, P12_B, P13_1, P13_2, P13_3, P13A_1, P13A_2, P13A_3, ULTIMA_EDIFICACION, P14, P14_A, CATEGORIA_VIA_R, CATEGORIA_VIA_R_O, NOM_VIA_R, REFERENCIA, P17, P17_A, P18, P19, P20, P20_A, P21, P22, P23_K, P24, P25, P25_1_NOMBRE, P25_2, C_MULTI, P26, P26_O, P26_9_O, P26_P, TOTAL_M, TOTAL_H, SEGMENTO_ID, SEGMENTO, P12_A_BCK, P12_B_BCK, RESFIN, RESFIN_O, ID_TABLET, DNI_INI, DNI_FIN, FECHA_EMP, P26_B, P26_B_VIV, OBS_REGISTRO, FECHA_INICIO, FECHA_FIN, USUCRE, FECCRE, USUREG, FECREG, FECENV, P14_RES, CATVIA_RES, CATVIA_RES_O, NOMVIA_RES, P26_9A };
+};
+
+const deleteCpv0301det = async (Id, Codccpp, Zona_id, Manzana_id, Frente_id, Dni, Id_reg) => {
+  await db.T_05_dig_cpv0301_det.destroy({
+    where: { ID: Id , CODCCPP: Codccpp, ZONA_ID: Zona_id, MANZANA_ID:Manzana_id,FRENTE_ID:Frente_id,DNI:Dni,ID_REG:Id_reg },
+  });
+};
+
+
+module.exports = {
+    getLevelMzaCpv0301det,
+    getAllCpv0301det,
+    findCpv0301detById,
+    createCpv0301det,
+    updateCpv0301det,
+    deleteCpv0301det,  
+};

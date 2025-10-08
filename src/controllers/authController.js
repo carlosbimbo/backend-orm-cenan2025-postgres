@@ -1,5 +1,5 @@
 /** @format */
-const personService = require("../services/person.service");
+const usuarioService = require("../services/user.service");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { StatusMessage } = require("../utils/statusMessage");
@@ -27,7 +27,7 @@ const signup = async (req, res) => {
 	}
 
 	try {
-		const user = await personService.findPersonByName(username);		
+		const user = await usuarioService.findUserByName(username);		
 		if (user) {		
 			res.status(201).json({ message: StatusMessage.SUCCESS });
 		}else {
@@ -57,7 +57,7 @@ const signin = async (req, res) => {
 
 const findUserWithPassword = async (username, password) => {
 	
-	const user = await personService.findPersonByUserandPassword(username,password);
+	const user = await usuarioService.findUserByUserandPassword(username,password);
 
 	if (user) {
 		return user;
@@ -77,13 +77,13 @@ const setCookies = (res, token) => {
 
 const validateResponse = (result, res) => {
 
-		const token = jwt.sign({ userId: result.Id }, process.env.JWT_SECRET, {
+		const token = jwt.sign({ userid: result.id }, process.env.JWT_SECRET, {
 		expiresIn: config.get("security.tokenexperiation"), 
 		
 	});
 
-	console.log('Hola result.Id : ' + result.Id);
-			if(result.Id){
+	console.log('Hola result.id : ' + result.id);
+			if(result.id){
 			setCookies(res, token);
 			res.status(200).json({ message: StatusMessage.SUCCESS, token });
 			}else{
@@ -94,7 +94,7 @@ const validateResponse = (result, res) => {
 
 const simpleUserauthentication = async (username, password) => {
 	
-	const user = await personService.findPersonByUserandPassword(username,password);
+	const user = await usuarioService.findUserByUserandPassword(username,password);
 
 	if (user) {
 			return true;	

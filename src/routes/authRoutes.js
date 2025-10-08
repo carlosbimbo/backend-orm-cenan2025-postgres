@@ -21,7 +21,7 @@ router.get("/profile", authMiddleware.verifyToken, (req, res) => {
   	/*#swagger.tags = ['Auth']
         #swagger.description = 'Endpoint to see profile a specific user later signin' */
   // This route is protected and can only be accessed by authenticated users
-  res.json({ message: "Profile accessed successfully", userId: req.userId });
+  res.json({ message: "Profile accessed successfully", userid: req.userid });
   //res.json({ message:"Profile accessed successfully dnce", personId: req.Id });
 
 });

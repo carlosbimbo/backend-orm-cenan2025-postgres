@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 //const User = require("../models/User");
 const authController = require("../controllers/authController");
 const { StatusMessage } = require("../utils/statusMessage");
-const personService = require("../services/person.service");
+const userService = require("../services/user.service");
 
 /** Middleware to verify JWT token */
 exports.verifyToken = async (req, res, next) => {
@@ -41,6 +41,9 @@ exports.verifyToken = async (req, res, next) => {
       res.status(401).json({ error: StatusMessage.UNAUTHORIZED });
     }
   }
+
+  console.log('mira est termine');
+
 };
 
 const verifyBearerToken = async (token, req) => {
@@ -52,7 +55,7 @@ const verifyBearerToken = async (token, req) => {
     if (err) {
       return StatusMessage.UNAUTHORIZED;
     }
-    req.userId = decoded.userId;                  
+    req.userid = decoded.userid;                  
     req.accessToken = token;
   });
 
@@ -65,10 +68,10 @@ exports.isAuthenticated = async (req, res, next) => {
     console.log('Es isAuthenticated mira esto JIJI');
     //console.log(req);
 
-    console.log('mIRA isAuthenticated ES VALOR JUJUJU : ' + req.userId);
+    console.log('mIRA isAuthenticated ES VALOR JUJUJU : ' + req.userid);
 
     //const user = await User.findById(req.userId);
-    const user = await personService.findPersonById(req.userId);    
+    const user = await userService.findUserById(req.userid);    
     if (!user) {
       return res.status(401).json({ error: StatusMessage.UNAUTHORIZED });
     }

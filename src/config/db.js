@@ -7,7 +7,7 @@ const t_centropobladoModel = require("../models/t_centro_poblado_model");
 const t_cpv0301detModel = require("../models/t_05_dig_cpv0301_det_model");
 
 const userModel = require("../models/user.model");
-
+const t05_etapagestaModel = require("../models/t_05_etapa_gestacional_model");
 
 require("dotenv").config();
 
@@ -39,6 +39,8 @@ const sequelize = new Sequelize(
 
 const db = {};
 db.User = userModel(sequelize);
+db.T05_etapagesta = t05_etapagestaModel(sequelize);
+
 db.Person = personModel(sequelize);
 db.T_manzana = t_manzanaModel(sequelize);
 db.T_centro_poblado = t_centropobladoModel(sequelize);

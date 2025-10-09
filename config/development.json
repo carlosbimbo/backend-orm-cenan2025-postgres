@@ -6,7 +6,7 @@
     "emailtokenexperiation":"1h"
   },    
   "server": {
-    "port": 3020,
+    "port": 8086,
     "hostname": "localhost"
   }
 }

@@ -13,7 +13,7 @@ require("dotenv").config();
 
 console.log('mira lagus : ' + process.env.HOST);
 
-const URI = `postgres://${process.env.USER}:${process.env.PASSWORD}@${process.env.HOST}:${process.env.SQL_PORT}/${process.env.DB}`;
+const URI = `postgres://${process.env.DB_USER}:${process.env.PASSWORD}@${process.env.HOST}:${process.env.SQL_PORT}/${process.env.DB}`;
 
 const sequelize = new Sequelize(URI, {
   dialect: process.env.DIALECT,

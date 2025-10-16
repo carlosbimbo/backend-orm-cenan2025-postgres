@@ -9,6 +9,7 @@ const personController = require("../controllers/person.controller");
 const tjoincccpmzaController = require("../controllers/t_join_cccp_mza_controller");
 
 const t05etapagestaController = require("../controllers/t05_etapagesta_controller");
+const t05regiseventController = require("../controllers/t05_regisevent_controller");
 
 const router = express.Router();
 
@@ -20,6 +21,7 @@ router.post("/newper", authMiddleware.verifyToken, personController.createPerson
 router.get("/cccpmza/findjoin/:id/:codccpp/:zona_id", authMiddleware.verifyToken, tjoincccpmzaController.getcccpmza);
 
 router.get("/findetapagesta/:id", authMiddleware.verifyToken, t05etapagestaController.getT05etapagesta);
+router.get("/findregisevent/:id", authMiddleware.verifyToken, t05regiseventController.getT05regisevent);
 
 router.get("/profile", authMiddleware.verifyToken, (req, res) => {
   	/*#swagger.tags = ['Auth']

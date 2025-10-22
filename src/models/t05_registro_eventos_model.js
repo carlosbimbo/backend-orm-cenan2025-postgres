@@ -10,7 +10,7 @@ function model(sequelize) {
       primaryKey: true
     },
     iduser: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
     },
     tipo: {

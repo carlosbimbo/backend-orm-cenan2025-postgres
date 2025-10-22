@@ -4,7 +4,7 @@ module.exports = model;
 
 function model(sequelize) {
   const attributes = {
-    id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
+    id: { type: DataTypes.UUID, allowNull: false, primaryKey: true },
     opcgesta: { type: DataTypes.INTEGER, allowNull: true },
     fur: { type: DataTypes.STRING(10), allowNull: true },
     fec_proba_parto: { type: DataTypes.STRING(10), allowNull: true },

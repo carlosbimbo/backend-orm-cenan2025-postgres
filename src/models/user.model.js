@@ -5,8 +5,7 @@ module.exports = model;
 function model(sequelize) {
   const attributes = {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,      
       primaryKey: true,
     },
     username: {

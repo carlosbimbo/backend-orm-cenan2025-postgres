@@ -65,8 +65,8 @@ function model(sequelize) {
   };
 
   const options = {
-    freezeTableName: true, // evita pluralización automática
-    timestamps: false,     // desactiva createdAt/updatedAt automáticos
+    freezeTableName: true, 
+    timestamps: false,    
     tableName: "users",
     schema: "public",
   };

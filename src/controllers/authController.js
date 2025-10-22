@@ -66,6 +66,72 @@ const findUserWithPassword = async (username, password) => {
 	
 };
 
+const createUserapp = async (req, res) => {
+	 	/* 	#swagger.tags = ['Personal']
+        #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+
+	/* #swagger.security = [{
+            "bearerAuth": []
+    }] */
+
+    try {
+      var createdPerson = await usuarioService.createUser(req.body);
+      //res.status(201).json(createdPerson);
+      return res
+				.status(StatusCodes.OK)
+				.json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdPerson } });
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
+    }
+
+  };
+
+  const udpUserapp = async (req, res) => {
+	/* 	#swagger.tags = ['Personal']
+   #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+
+/* #swagger.security = [{
+	   "bearerAuth": []
+}] */
+
+try {
+ var createdPerson = await usuarioService.updateUser(req.body);
+ //res.status(201).json(createdPerson);
+ return res
+		   .status(StatusCodes.OK)
+		   .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdPerson } });
+
+} catch (error) {
+ console.log(error);
+ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
+}
+
+};
+
+const saveOrupdUserapp = async (req, res) => {
+	/* 	#swagger.tags = ['Personal']
+   #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+
+/* #swagger.security = [{
+	   "bearerAuth": []
+}] */
+
+try {
+ var createdPerson = await usuarioService.saveOrUpdateUser(req.body);
+ //res.status(201).json(createdPerson);
+ return res
+		   .status(StatusCodes.OK)
+		   .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdPerson } });
+
+} catch (error) {
+ console.log(error);
+ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
+}
+
+};
+
 const setCookies = (res, token) => {
 	// Set the token as a cookie
 	res.cookie("accesstoken", token, {
@@ -114,4 +180,29 @@ const verify = async (req, res) => {
 	}
 };
 
-module.exports = { signin, signup, simpleUserauthentication, findUserWithPassword, verify };
+const getUserFullData = async (req, res) => {
+	/* #swagger.tags = ['Auth']
+	   #swagger.description = 'Obtiene toda la información completa de un usuario por username' */
+  
+	try {
+		const { username } = req.body; // o req.body, según cómo lo envíes
+	  console.log('getUserFullData datosall : ',username);	
+	  const userData = await usuarioService.getUserDataByUsername(username);
+  
+	  if (!userData) {
+		return res.status(404).json({ message: "Usuario no encontrado" });
+	  }
+  
+	  return res.status(200).json(userData);
+  
+	} catch (error) {
+	  console.error("❌ Error en getUserFullData:", error);
+	  return res.status(500).json({
+		message: "Error interno del servidor",
+		error: error.message,
+	  });
+	}
+  };
+  
+
+module.exports = { signin, signup, simpleUserauthentication, findUserWithPassword, verify,createUserapp,udpUserapp,saveOrupdUserapp,getUserFullData };

@@ -1,16 +1,16 @@
 /** @format */
 
-const t05regiseventService = require("../services/t05_registro_eventos_service");
+const t05suplementService = require("../services/t_05_registro_suplementos_service");
 const { StatusMessage } = require("../utils/statusMessage");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 
-const getT05regisevent = async (req, res) => {
-	console.log('HI regisevent ID : ' + req.params.ideven + ' - ideven : ' + req.ideven);
+const getT05suplement = async (req, res) => {
+	console.log('HI suplement ID : ' + req.params.ideven + ' - ideven : ' + req.ideven);
 	console.log(req.body);
 	/* 	#swagger.tags = ['TMANZANA']
-        #swagger.description = 'Endpoint to regisevent a specific' */
+        #swagger.description = 'Endpoint to suplement a specific' */
         try {
-          var etapagesta = await t05regiseventService.getAllT05eventuser(req.params.ideven);
+          var etapagesta = await t05suplementService.getAllT05suplement(req.params.ideven);
           //let jsonetapagesta = JSON.parse(JSON.stringify(etapagesta));
           //console.log('etapagesta count(*) : ' + jsonetapagesta.length);
           res.json(etapagesta);
@@ -20,7 +20,7 @@ const getT05regisevent = async (req, res) => {
         }
 };
 
-const createT05regisevent = async (req, res) => {
+const createT05suplement = async (req, res) => {
   /* 	#swagger.tags = ['Personal']
      #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
 
@@ -29,11 +29,11 @@ const createT05regisevent = async (req, res) => {
  }] */
 
  try {
-   var createdT05regisevent= await t05regiseventService.createT05eventuser(req.body);
+   var createdT05suplement= await t05suplementService.createT05suplement(req.body);
    //res.status(201).json(createdPerson);
    return res
      .status(StatusCodes.OK)
-     .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdT05regisevent } });
+     .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdT05suplement } });
 
  } catch (error) {
    console.log(error);
@@ -42,7 +42,7 @@ const createT05regisevent = async (req, res) => {
 
 };
 
-const udpT05regisevent = async (req, res) => {
+const udpT05suplement = async (req, res) => {
 /* 	#swagger.tags = ['Personal']
 #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
 
@@ -51,11 +51,11 @@ const udpT05regisevent = async (req, res) => {
 }] */
 
 try {
-var createdT05regisevent = await t05regiseventService.updT05eventuser(req.body);
+var createdT05suplement = await t05suplementService.updT05suplement(req.body);
 //res.status(201).json(createdPerson);
 return res
     .status(StatusCodes.OK)
-    .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdT05regisevent } });
+    .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdT05suplement } });
 
 } catch (error) {
 console.log(error);
@@ -64,7 +64,7 @@ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
 
 };
 
-const saveOrUpdateT05event = async (req, res) => {
+const saveOrUpdateT05suplement = async (req, res) => {
 /* 	#swagger.tags = ['Personal']
 #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
 
@@ -73,11 +73,11 @@ const saveOrUpdateT05event = async (req, res) => {
 }] */
 
 try {
-var createdPerson = await t05regiseventService.saveOrUpdateT05eventuser(req.body);
+var createdSuple = await t05suplementService.saveOrUpdateT05suplement(req.body);
 //res.status(201).json(createdPerson);
 return res
     .status(StatusCodes.OK)
-    .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdPerson } });
+    .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdSuple } });
 
 } catch (error) {
 console.log(error);
@@ -86,4 +86,4 @@ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
 
 };
 
-module.exports = { getT05regisevent,saveOrUpdateT05event,udpT05regisevent,createT05regisevent };
+module.exports = { getT05suplement,saveOrUpdateT05suplement,udpT05suplement,createT05suplement };

@@ -1,46 +1,75 @@
 const db = require("../config/db");
+const { sanitizeEmptyValues } = require("../utils/sanitizeEmptyValues");
 
 const getAllT05etapagesta = async (id) => {
-  return await db.T05_etapagesta.findAll({ where: { id: id }});
+  return await db.T05_etapagesta.findAll({ where: { id: id } });
 };
 
 const findT05etapagestaById = async (id) => {
-  console.log('findT05etapagestaById id : ' + id)
+  console.log("findT05etapagestaById id :", id);
   return await db.T05_etapagesta.findOne({
-    where: {
-      id: id
-    }
+    where: { id },
   });
 };
 
-const createT05etapagesta = async ({ id,opcgesta,fur,fec_proba_parto,eco_nro_sem_emb,eco_nro_dias_emb,hemoglo,calcu_nrosema,calcu_nrodias,calcu_nrodias_parto,calcu_fecaprox_parto }) => {
-  const newT05etapagesta = await db.T05_etapagesta.create({ id,opcgesta,fur,fec_proba_parto,eco_nro_sem_emb,eco_nro_dias_emb,hemoglo,calcu_nrosema,calcu_nrodias,calcu_nrodias_parto,calcu_fecaprox_parto });
-  return newT05etapagesta;
+// add T05etapagesta
+const createT05etapagesta = async (data) => {
+  const cleanData = sanitizeEmptyValues(data);
+
+  const newEtapagesta = await db.T05_etapagesta.create(cleanData);
+  return newEtapagesta;
 };
 
-const updateT05etapagesta = async ({ id,opcgesta,fur,fec_proba_parto,eco_nro_sem_emb,eco_nro_dias_emb,hemoglo,calcu_nrosema,calcu_nrodias,calcu_nrodias_parto,calcu_fecaprox_parto }) => {
-  await db.T05_etapagesta.update(
-    { id,opcgesta,fur,fec_proba_parto,eco_nro_sem_emb,eco_nro_dias_emb,hemoglo,calcu_nrosema,calcu_nrodias,calcu_nrodias_parto,calcu_fecaprox_parto },
-    {
-      where: {
-        id: id
-      },
+const updT05etapagesta = async (data) => {
+  const cleanData = sanitizeEmptyValues(data);
+  const { id } = cleanData;
+  if (!id) {
+    throw new Error("El campo 'id' es obligatorio para actualizar un usuario");
+  }
+
+  // Ejecutar actualización
+  await db.T05_etapagesta.update(cleanData, {
+    where: { id },
+  });
+
+  const updatedEtapagesta = await db.T05_etapagesta.findByPk(id);
+  return updatedEtapagesta;
+};
+
+const saveOrUpdateT05etapagesta = async (data) => {
+  try {
+    const { id } = data;
+
+    if (id === undefined || id === null) {
+      throw new Error("El campo 'id' es obligatorio para guardar o actualizar el usuario");
     }
-  );
-  return { id,opcgesta,fur,fec_proba_parto,eco_nro_sem_emb,eco_nro_dias_emb,hemoglo,calcu_nrosema,calcu_nrodias,calcu_nrodias_parto,calcu_fecaprox_parto };
+
+    const existingEtapagesta = await findT05etapagestaById(id);
+
+    if (existingEtapagesta) {
+      console.log("🟡 Actualizando usuario existente con ID:", id);
+      return await updT05etapagesta(data);
+    } else {
+      console.log("🟢 No se encontró usuario con ID:", id, "→ creando nuevo registro");
+      return await createT05etapagesta(data);
+    }
+  } catch (error) {
+    console.error("🔴 Error en saveOrUpdateT05etapagesta:", error.message);
+    throw error;
+  }
 };
 
 const deleteT05etapagesta = async (id) => {
   await db.T05_etapagesta.destroy({
-    where: { id: id },
+    where: { id },
   });
 };
 
-
 module.exports = {
-    getAllT05etapagesta,
-    findT05etapagestaById,
-    createT05etapagesta,
-    updateT05etapagesta,
-    deleteT05etapagesta,  
+  getAllT05etapagesta,
+  findT05etapagestaById,
+  createT05etapagesta,
+  updT05etapagesta,
+  deleteT05etapagesta,
+  saveOrUpdateT05etapagesta,
 };

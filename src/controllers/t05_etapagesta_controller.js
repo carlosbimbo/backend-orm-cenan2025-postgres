@@ -20,5 +20,71 @@ const getT05etapagesta = async (req, res) => {
         }
 };
 
+const createT05etapagesta = async (req, res) => {
+  /* 	#swagger.tags = ['Personal']
+     #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
 
-module.exports = { getT05etapagesta };
+/* #swagger.security = [{
+         "bearerAuth": []
+ }] */
+
+ const { username,password,dni,nombape,lati,longi,altura,lati_viv,longi_viv,altura_viv,profileimage } = req.body;
+ try {
+   var createdT05etapagesta= await t05etapagestaService.createT05etapagesta(req.body);
+   //res.status(201).json(createdPerson);
+   return res
+     .status(StatusCodes.OK)
+     .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdT05etapagesta } });
+
+ } catch (error) {
+   console.log(error);
+   res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
+ }
+
+};
+
+const udpT05etapagesta = async (req, res) => {
+/* 	#swagger.tags = ['Personal']
+#swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+
+/* #swagger.security = [{
+  "bearerAuth": []
+}] */
+
+try {
+var createdT05etapagesta = await t05etapagestaService.updT05etapagesta(req.body);
+//res.status(201).json(createdPerson);
+return res
+    .status(StatusCodes.OK)
+    .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdT05etapagesta } });
+
+} catch (error) {
+console.log(error);
+res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
+}
+
+};
+
+const saveOrupdT05etapagesta = async (req, res) => {
+/* 	#swagger.tags = ['Personal']
+#swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+
+/* #swagger.security = [{
+  "bearerAuth": []
+}] */
+
+try {
+var createdPerson = await t05etapagestaService.saveOrUpdateT05etapagesta(req.body);
+//res.status(201).json(createdPerson);
+return res
+    .status(StatusCodes.OK)
+    .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdPerson } });
+
+} catch (error) {
+console.log(error);
+res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
+}
+
+};
+
+module.exports = { getT05etapagesta,saveOrupdT05etapagesta,udpT05etapagesta,createT05etapagesta };

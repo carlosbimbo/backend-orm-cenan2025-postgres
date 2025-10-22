@@ -18,8 +18,8 @@ function model(sequelize) {
   };
 
   const options = {
-    freezeTableName: true, // usa el nombre exacto de la tabla
-    timestamps: false,     // desactiva createdAt/updatedAt
+    freezeTableName: true, 
+    timestamps: false,     
   };
 
   return sequelize.define("t_05_etapa_gestacional", attributes, options);

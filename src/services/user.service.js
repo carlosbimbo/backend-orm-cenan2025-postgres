@@ -52,19 +52,25 @@ const updateUser = async (data) => {
 
 const saveOrUpdateUser = async (data) => {
   try {
-    const { id } = data;
+    const { username } = data;
 
-    if (id === undefined || id === null) {
+    if (username === undefined || username === null) {
       throw new Error("El campo 'id' es obligatorio para guardar o actualizar el usuario");
     }
 
-    const existingUser = await findUserById(id);
-
+    //const existingUser = await findUserById(id);
+    const existingUser = await findUserByName(username);
+    console.log('existingUser saveorudp username2910: ',existingUser)
+        
     if (existingUser) {
-      console.log("🟡 Actualizando usuario existente con ID:", id);
-      return await updateUser(data);
+      const userId = existingUser.id;
+      console.log('existingUser suxxxx userId: ',userId);
+
+      const updatedData = { ...data, id: userId };
+      console.log("🟡 Actualizando usuario existente con username:", username);
+      return await updateUser(updatedData);
     } else {
-      console.log("🟢 No se encontró usuario con ID:", id, "→ creando nuevo registro");
+      console.log("🟢 No se encontró usuario con username:", username, "→ creando nuevo registro");
       return await createUser(data);
     }
 

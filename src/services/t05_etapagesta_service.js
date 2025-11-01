@@ -67,6 +67,49 @@ const deleteT05etapagesta = async (id) => {
   });
 };
 
+const saveOrUpdateT05etapagestaArray = async (dataArray) => {
+  try {    
+    if (!Array.isArray(dataArray)) {
+      throw new Error("El parámetro recibido no es un array de registros");
+    }
+    const results = [];    
+    for (const data of dataArray) {
+      try {
+        const { id } = data;
+        console.log("📦 Procesando registro:", data);
+        console.log("🔑 ID:", id);
+
+        if (id === undefined || id === null) {
+          throw new Error("El campo 'id' es obligatorio para guardar o actualizar");
+        }
+
+        const existingEtapagesta = await findT05etapagestaById(id);
+
+        if (existingEtapagesta) {
+          console.log("🟡 Actualizando registro existente con ID:", id);
+          const updated = await updT05etapagesta(data);
+          results.push({ id, action: "updated", data: updated });
+        } else {
+          console.log("🟢 Creando nuevo registro con ID:", id);
+          const created = await createT05etapagesta(data);
+          results.push({ id, action: "created", data: created });
+        }
+      } catch (innerError) {
+        // Si un registro falla, lo capturamos pero seguimos con los demás
+        console.error("🔴 Error procesando registro:", innerError.message);
+        results.push({ error: innerError.message, data });
+      }
+    }
+
+    // Devolvemos todos los resultados (éxitos y errores)
+    return results;
+  } catch (error) {
+    console.error("🔥 Error general en saveOrUpdateT05etapagesta:", error.message);
+    throw error;
+  }
+};
+
+
 module.exports = {
   getAllT05etapagesta,
   findT05etapagestaById,
@@ -74,4 +117,5 @@ module.exports = {
   updT05etapagesta,
   deleteT05etapagesta,
   saveOrUpdateT05etapagesta,
+  saveOrUpdateT05etapagestaArray
 };

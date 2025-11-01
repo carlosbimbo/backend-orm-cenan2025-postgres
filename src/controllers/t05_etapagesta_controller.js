@@ -87,4 +87,26 @@ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
 
 };
 
-module.exports = { getT05etapagesta,saveOrupdT05etapagesta,udpT05etapagesta,createT05etapagesta };
+const saveOrupdT05etapagestaArray = async (req, res) => {
+  /* 	#swagger.tags = ['Personal']
+  #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+  
+  /* #swagger.security = [{
+    "bearerAuth": []
+  }] */
+  
+  try {
+  var createdGesta = await t05etapagestaService.saveOrUpdateT05etapagestaArray(req.body);
+  //res.status(201).json(createdGesta);
+  return res
+      .status(StatusCodes.OK)
+      .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdGesta } });
+  
+  } catch (error) {
+  console.log(error);
+  res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
+  }
+  
+  };
+
+module.exports = { getT05etapagesta,saveOrupdT05etapagesta,udpT05etapagesta,createT05etapagesta,saveOrupdT05etapagestaArray };

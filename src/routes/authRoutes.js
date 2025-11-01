@@ -30,6 +30,7 @@ router.get("/getalldatauser", authMiddleware.verifyToken, authController.getUser
 router.post("/newetapagesta", authMiddleware.verifyToken, t05etapagestaController.createT05etapagesta);
 router.post("/updetapagesta", authMiddleware.verifyToken, t05etapagestaController.udpT05etapagesta);
 router.post("/savetapagesta", authMiddleware.verifyToken, t05etapagestaController.saveOrupdT05etapagesta);
+router.post("/saveorudparragesta", authMiddleware.verifyToken, t05etapagestaController.saveOrupdT05etapagestaArray);
 /*fin for user etapagesta*/
 
 /*for user event*/

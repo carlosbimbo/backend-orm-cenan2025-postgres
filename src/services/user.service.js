@@ -80,6 +80,51 @@ const saveOrUpdateUser = async (data) => {
   }
 };
 
+const saveOrUpdateUserArray = async (dataArray) => {
+  try {    
+    if (!Array.isArray(dataArray)) {
+      throw new Error("El parámetro recibido no es un array de Usuarios");
+    }
+    const results = [];    
+    for (const data of dataArray) {
+      try {
+        const { id,username } = data;
+        console.log("📦 Procesando registro:", data);
+        console.log("🔑 ID:", id);
+
+        if (id === undefined || id === null) {
+          throw new Error("El campo 'id' es obligatorio para guardar o actualizar");
+        }
+
+        if (username === undefined || username === null) {
+          throw new Error("El campo 'username' es obligatorio para guardar o actualizar el usuario");
+        }
+
+        const existingUser = await findUserByName(username);
+
+        if (existingUser) {
+          console.log("🟡 Actualizando Usuario existente con ID:", id);
+          const updated = await updateUser(data);
+          results.push({ id, action: "updated", data: updated });
+        } else {
+          console.log("🟢 Creando nuevo Usuario con ID:", id);
+          const created = await createUser(data);
+          results.push({ id, action: "created", data: created });
+        }
+      } catch (innerError) {
+        // Si un registro falla, lo capturamos pero seguimos con los demás
+        console.error("🔴 Error procesando registro:", innerError.message);
+        results.push({ error: innerError.message, data });
+      }
+    }
+
+    return results;
+  } catch (error) {
+    console.error("🔥 Error general en saveOrUpdateUserArray:", error.message);
+    throw error;
+  }
+};
+
 const deleteUser = async (id) => {              
   await db.User.destroy({
     where: { id: id },
@@ -236,4 +281,5 @@ module.exports = {
   execquery,
   saveOrUpdateUser,
   getUserDataByUsername,
+  saveOrUpdateUserArray
 };

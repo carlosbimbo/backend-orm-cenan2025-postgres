@@ -132,6 +132,28 @@ try {
 
 };
 
+const saveOrupdUserSync = async (req, res) => {
+	/* 	#swagger.tags = ['Personal']
+   #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+
+/* #swagger.security = [{
+	   "bearerAuth": []
+}] */
+
+try {
+ var createdUser = await usuarioService.saveOrUpdateUserArray(req.body);
+ //res.status(201).json(createdUser);
+ return res
+		   .status(StatusCodes.OK)
+		   .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdUser } });
+
+} catch (error) {
+ console.log(error);
+ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
+}
+
+};
+
 const setCookies = (res, token) => {
 	// Set the token as a cookie
 	res.cookie("accesstoken", token, {
@@ -205,4 +227,4 @@ const getUserFullData = async (req, res) => {
   };
   
 
-module.exports = { signin, signup, simpleUserauthentication, findUserWithPassword, verify,createUserapp,udpUserapp,saveOrupdUserapp,getUserFullData };
+module.exports = { signin, signup, simpleUserauthentication, findUserWithPassword, verify,createUserapp,udpUserapp,saveOrupdUserapp,getUserFullData,saveOrupdUserSync };

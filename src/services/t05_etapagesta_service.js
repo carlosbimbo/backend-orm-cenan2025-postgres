@@ -101,7 +101,6 @@ const saveOrUpdateT05etapagestaArray = async (dataArray) => {
       }
     }
 
-    // Devolvemos todos los resultados (éxitos y errores)
     return results;
   } catch (error) {
     console.error("🔥 Error general en saveOrUpdateT05etapagesta:", error.message);

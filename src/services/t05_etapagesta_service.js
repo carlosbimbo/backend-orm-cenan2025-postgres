@@ -39,6 +39,8 @@ const updT05etapagesta = async (data) => {
 const saveOrUpdateT05etapagesta = async (data) => {
   try {
     const { id } = data;
+    console.log(data);
+    console.log(id);
 
     if (id === undefined || id === null) {
       throw new Error("El campo 'id' es obligatorio para guardar o actualizar el usuario");

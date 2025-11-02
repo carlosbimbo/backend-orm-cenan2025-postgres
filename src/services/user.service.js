@@ -172,6 +172,8 @@ const getUserDataByUsername = async (username) => {
         { model: db.T05_etapagesta, as: "etapasGestacionales", required: false },
         { model: db.T05_regisevent, as: "registroEventos", required: false },
         { model: db.T05_suplement, as: "registroSuplementos", required: false },
+        { model: db.T05_agenda_gestacional, as: "agendaGestacional", required: false },
+        { model: db.T05_dias_gestacion, as: "diasGestacion", required: false },
       ],
     });
 
@@ -255,11 +257,43 @@ const getUserDataByUsername = async (username) => {
           }
         : undefined;
     
+    const agendaGestacional =
+      user.agendaGestacional && user.agendaGestacional.length > 0
+        ? {
+              agendaGestacional: user.agendaGestacional.map((a) =>
+                cleanObject({
+                  id: a.id,
+                  nrosem: a.nrosem,
+                  fec_marker: a.fec_marker,
+                })
+              ),
+              _cantidad: user.agendaGestacional.length,
+            }
+          : undefined; 
+
+    const diasGestacion =
+        user.diasGestacion && user.diasGestacion.length > 0
+          ? {
+              diasGestacion: user.diasGestacion.map((d) =>
+                  cleanObject({
+                    id_diasg: d.id_diasg,
+                    iduser: d.iduser,
+                    nroseman: d.nroseman,
+                    fec_seman: d.fec_seman,
+                    fec_diagesta: d.fec_diagesta,
+                  })
+                ),
+                _cantidad: user.diasGestacion.length,
+              }
+            : undefined;
+
     const CENAN2025 = cleanObject({
       ...(etapaGesta && { t_05_etapa_gestacional: etapaGesta }),
       ...(userInfo && { users: userInfo }),
       ...(eventos && { t_05_registro_eventos: eventos }),
       ...(suplementos && { t_05_registro_suplementos: suplementos }),
+      ...(agendaGestacional && { t_05_agenda_gestacional: agendaGestacional }),
+      ...(diasGestacion && { t_05_dias_gestacion: diasGestacion }),
     });
 
     return { CENAN2025 };

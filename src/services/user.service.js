@@ -178,6 +178,26 @@ const getUserDataByUsername = async (username) => {
     });
 
     if (!user) return null;
+
+    const userInfo = {
+      usuarios: [
+        cleanObject({
+          id: user.id,
+          username: user.username,
+          password: user.password,
+          dni: user.dni,
+          nombape: user.nombape,
+          lati: user.lati,
+          longi: user.longi,
+          altura: user.altura,
+          lati_viv: user.lati_viv,
+          longi_viv: user.longi_viv,
+          altura_viv: user.altura_viv,
+          profileimage: user.profileimage,
+        }),
+      ],
+      _cantidad: user ? 1 : 0,
+    };   
     
     const etapaGesta =
       user.etapasGestacionales && user.etapasGestacionales.length > 0
@@ -199,26 +219,7 @@ const getUserDataByUsername = async (username) => {
             ),
             _cantidad: user.etapasGestacionales.length,
           }
-        : undefined;
-    
-    const userInfo = {
-      usuarios: [
-        cleanObject({
-          username: user.username,
-          password: user.password,
-          dni: user.dni,
-          nombape: user.nombape,
-          lati: user.lati,
-          longi: user.longi,
-          altura: user.altura,
-          lati_viv: user.lati_viv,
-          longi_viv: user.longi_viv,
-          altura_viv: user.altura_viv,
-          profileimage: user.profileimage,
-        }),
-      ],
-      _cantidad: user ? 1 : 0,
-    };
+        : undefined; 
     
     const eventos =
       user.registroEventos && user.registroEventos.length > 0

@@ -25,7 +25,7 @@ router.post("/newuserfirstsign", authController.saveOrupdUserapp);
 router.post("/newuserapp", authMiddleware.verifyToken, authController.createUserapp);
 router.post("/updateuserapp", authMiddleware.verifyToken, authController.udpUserapp);
 router.post("/saveuserapp", authMiddleware.verifyToken, authController.saveOrupdUserapp);
-router.get("/getalldatauser", authMiddleware.verifyToken, authController.getUserFullData);
+router.post("/getalldatauser", authMiddleware.verifyToken, authController.getUserFullData);
 router.post("/syncalluser", authMiddleware.verifyToken, authController.saveOrupdUserSync);
 /*fin for user appcenan*/
 

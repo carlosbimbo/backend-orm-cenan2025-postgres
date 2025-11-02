@@ -86,4 +86,26 @@ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
 
 };
 
-module.exports = { getT05regisevent,saveOrUpdateT05event,udpT05regisevent,createT05regisevent };
+const saveOrupdEventUserSync = async (req, res) => {
+  /* 	#swagger.tags = ['Personal']
+  #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+  
+  /* #swagger.security = [{
+    "bearerAuth": []
+  }] */
+  
+  try {
+  var createdEventUser = await t05regiseventService.saveOrUpdEventuserArray(req.body);
+  //res.status(201).json(createdEventUser);
+  return res
+      .status(StatusCodes.OK)
+      .json({ status: ReasonPhrases.OK, message: StatusMessage.SUCCESS, data: { createdEventUser } });
+  
+  } catch (error) {
+  console.log(error);
+  res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
+  }
+  
+  };
+
+module.exports = { getT05regisevent,saveOrUpdateT05event,udpT05regisevent,createT05regisevent,saveOrupdEventUserSync };

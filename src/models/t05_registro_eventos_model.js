@@ -7,11 +7,12 @@ function model(sequelize) {
     ideven: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true, 
     },
     iduser: {
       type: DataTypes.UUID,
       allowNull: false,
+      primaryKey: true, 
     },
     tipo: {
       type: DataTypes.INTEGER,
@@ -40,10 +41,16 @@ function model(sequelize) {
   };
 
   const options = {
-    freezeTableName: true, 
-    timestamps: false,    
+    freezeTableName: true,
+    timestamps: false,
     tableName: "t_05_registro_eventos",
     schema: "public",
+    indexes: [
+      {
+        unique: true,
+        fields: ["ideven", "iduser"], // Refuerza la PK compuesta a nivel de modelo
+      },
+    ],
   };
 
   return sequelize.define("t_05_registro_eventos", attributes, options);

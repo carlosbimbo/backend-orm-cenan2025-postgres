@@ -4,41 +4,50 @@ module.exports = model;
 
 function model(sequelize) {
   const attributes = {
-    idsuple: { 
-      type: DataTypes.INTEGER, 
-      allowNull: false, 
-      primaryKey: true
+    idsuple: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true, 
     },
-    iduser: { 
+    iduser: {
       type: DataTypes.UUID, 
-      allowNull: false 
+      allowNull: false,
+      primaryKey: true, 
     },
-    fecha: { 
-      type: DataTypes.STRING(10), 
-      allowNull: false 
+    fecha: {
+      type: DataTypes.STRING(10),
+      allowNull: false,
     },
-    tipo_suple: { 
-      type: DataTypes.INTEGER, 
-      allowNull: true 
+    tipo_suple: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
-    foto: { 
-      type: DataTypes.STRING(100), 
-      allowNull: true 
+    foto: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
     },
-    nro_sema: { 
-      type: DataTypes.INTEGER, 
-      allowNull: true 
+    nro_sema: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
-    destinationuri: { 
-      type: DataTypes.STRING(200), 
-      allowNull: true 
-    }
+    destinationuri: {
+      type: DataTypes.STRING(200),
+      allowNull: true,
+      field: "destinationuri", 
+    },
   };
 
   const options = {
-    freezeTableName: true, 
-    timestamps: false,     
-    schema: "public",     
+    freezeTableName: true,          
+    timestamps: false,              
+    tableName: "t_05_registro_suplementos", 
+    schema: "public",               
+    indexes: [
+      {
+        unique: true,
+        fields: ["idsuple", "iduser"], // refuerza la PK compuesta
+      },
+    ],
   };
 
   return sequelize.define("t_05_registro_suplementos", attributes, options);

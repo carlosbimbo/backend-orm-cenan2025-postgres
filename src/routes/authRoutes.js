@@ -38,12 +38,15 @@ router.post("/saveorudparragesta", authMiddleware.verifyToken, t05etapagestaCont
 router.post("/neweventuser", authMiddleware.verifyToken, t05regiseventController.createT05regisevent);
 router.post("/updeventuser", authMiddleware.verifyToken, t05regiseventController.udpT05regisevent);
 router.post("/saveventuser", authMiddleware.verifyToken, t05regiseventController.saveOrUpdateT05event);
+router.post("/syncalleventuser", authMiddleware.verifyToken, t05regiseventController.saveOrupdEventUserSync);
 /*fin for user event*/
 
 /*for user suplement*/
 router.post("/newsuple", authMiddleware.verifyToken, t05supleController.createT05suplement);
 router.post("/updsuple", authMiddleware.verifyToken, t05supleController.udpT05suplement);
 router.post("/savesuple", authMiddleware.verifyToken, t05supleController.saveOrUpdateT05suplement);
+router.post("/syncallsuple", authMiddleware.verifyToken, t05supleController.saveOrupdSupleSync);
+
 /*fin for user suplement*/
 
 

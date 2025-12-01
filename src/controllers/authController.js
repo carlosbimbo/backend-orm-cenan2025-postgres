@@ -40,7 +40,7 @@ const signup = async (req, res) => {
 };
 
 const signin = async (req, res) => {
-	console.log('Hola Peru');
+	//console.log('Hola Peru');
 	console.log(req.body);
 	/* 	#swagger.tags = ['AUTH']
         #swagger.description = 'Endpoint to signin a specific user' */

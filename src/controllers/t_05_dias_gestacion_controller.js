@@ -8,6 +8,9 @@ const { StatusCodes, ReasonPhrases } = require("http-status-codes");
  * Obtiene todos los registros de días de gestación de un usuario
  */
 const getT05diasGestacion = async (req, res) => {
+   /* 	#swagger.tags = ['DIAS-GESTACION']
+     #swagger.description = 'Endpoint para consultar todos los dias de gestacion de la Gestante' */
+
   console.log("📘 getT05diasGestacion - iduser:", req.params.iduser);
   try {
     const diasGestacion = await t05diasgestacionService.getAllT05diasGestacion(req.params.iduser);
@@ -22,8 +25,8 @@ const getT05diasGestacion = async (req, res) => {
  * Crea un nuevo registro de días de gestación
  */
 const createT05diasGestacion = async (req, res) => {
-  /* 	#swagger.tags = ['T05_DIAS_GESTACION']
-      #swagger.description = 'Crear nuevo registro de días de gestación' */
+   /* 	#swagger.tags = ['DIAS-GESTACION']
+     #swagger.description = 'Endpoint para crear los dias de gestacion de la Gestante' */
 
   /* #swagger.security = [{
          "bearerAuth": []
@@ -45,8 +48,8 @@ const createT05diasGestacion = async (req, res) => {
  * Actualiza un registro existente de días de gestación
  */
 const updT05diasGestacion = async (req, res) => {
-  /* 	#swagger.tags = ['T05_DIAS_GESTACION']
-      #swagger.description = 'Actualizar un registro existente de días de gestación' */
+   /* 	#swagger.tags = ['DIAS-GESTACION']
+     #swagger.description = 'Endpoint para actualizar los dias de gestacion de la Gestante' */
 
   /* #swagger.security = [{
          "bearerAuth": []
@@ -68,8 +71,8 @@ const updT05diasGestacion = async (req, res) => {
  * Guarda o actualiza un registro (si existe, lo actualiza; si no, lo crea)
  */
 const saveOrUpdateT05diasGestacion = async (req, res) => {
-  /* 	#swagger.tags = ['T05_DIAS_GESTACION']
-      #swagger.description = 'Guardar o actualizar un registro de días de gestación' */
+   /* 	#swagger.tags = ['DIAS-GESTACION']
+     #swagger.description = 'Endpoint para crear o actualizar los dias de gestacion de la Gestante' */
 
   /* #swagger.security = [{
          "bearerAuth": []
@@ -91,8 +94,8 @@ const saveOrUpdateT05diasGestacion = async (req, res) => {
  * Sincroniza múltiples registros (crear o actualizar en lote)
  */
 const saveOrUpdT05diasGestacionSync = async (req, res) => {
-  /* 	#swagger.tags = ['T05_DIAS_GESTACION']
-      #swagger.description = 'Sincroniza múltiples registros (crear o actualizar en lote)' */
+   /* 	#swagger.tags = ['DIAS-GESTACION']
+     #swagger.description = 'Endpoint para crear o actualizar todos los dias de gestacion de la Gestante' */
 
   /* #swagger.security = [{
          "bearerAuth": []
@@ -114,8 +117,8 @@ const saveOrUpdT05diasGestacionSync = async (req, res) => {
  * Elimina un registro por id_diasg e iduser
  */
 const deleteT05diasGestacion = async (req, res) => {
-  /* 	#swagger.tags = ['T05_DIAS_GESTACION']
-      #swagger.description = 'Eliminar un registro de días de gestación' */
+   /* 	#swagger.tags = ['DIAS-GESTACION']
+     #swagger.description = 'Endpoint para eliminar un dia de gestacion de la Gestante' */
 
   /* #swagger.security = [{
          "bearerAuth": []

@@ -8,7 +8,7 @@ const userService = require("../services/user.service");
 
 /** Middleware to verify JWT token */
 exports.verifyToken = async (req, res, next) => {
-  	/* 	#swagger.tags = ['Auth']
+  	/* 	#swagger.tags = ['AUTH']
         #swagger.description = 'Endpoint to signin a specific user' */
   const token = req.headers.authorization;
   console.log('mira este tokenn');

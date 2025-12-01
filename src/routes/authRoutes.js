@@ -60,7 +60,7 @@ router.post("/syncalldaysgesta", authMiddleware.verifyToken, t05diasGestacionCon
 
 
 router.get("/profile", authMiddleware.verifyToken, (req, res) => {
-  	/*#swagger.tags = ['Auth']
+  	/*#swagger.tags = ['AUTH']
         #swagger.description = 'Endpoint to see profile a specific user later signin' */
   // This route is protected and can only be accessed by authenticated users
   res.json({ message: "Profile accessed successfully", userid: req.userid });

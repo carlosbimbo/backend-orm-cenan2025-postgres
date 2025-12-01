@@ -9,6 +9,8 @@ const { StatusCodes, ReasonPhrases } = require("http-status-codes");
  */
 const getT05AgendaGestacional = async (req, res) => {
   console.log("🟢 getT05AgendaGestacional ID:", req.params.id);
+     /* 	#swagger.tags = ['AGENDA-GESTACIONAL']
+     #swagger.description = 'Endpoint para consultar los registros de los inicios de las 40 semanas de gestacion del paciente' */
 
   try {
     const agenda = await t05AgendaGestacionalService.getAllT05AgendaGestacional(req.params.id);
@@ -29,6 +31,9 @@ const getT05AgendaGestacional = async (req, res) => {
  * Crear un nuevo registro de agenda gestacional
  */
 const createT05AgendaGestacional = async (req, res) => {
+    /* 	#swagger.tags = ['AGENDA-GESTACIONAL']
+     #swagger.description = 'Endpoint para crear el registro de la semana de gestacion del paciente' */
+
   try {
     const createdAgenda = await t05AgendaGestacionalService.createT05AgendaGestacional(req.body);
 
@@ -49,6 +54,8 @@ const createT05AgendaGestacional = async (req, res) => {
  * Actualizar un registro existente
  */
 const updT05AgendaGestacional = async (req, res) => {
+  /* 	#swagger.tags = ['AGENDA-GESTACIONAL']
+     #swagger.description = 'Endpoint para actualizar el registro de la semana de gestacion del paciente' */
   try {
     const updatedAgenda = await t05AgendaGestacionalService.updT05AgendaGestacional(req.body);
 
@@ -69,6 +76,8 @@ const updT05AgendaGestacional = async (req, res) => {
  * Crear o actualizar un registro (upsert)
  */
 const saveOrUpdateT05AgendaGestacional = async (req, res) => {
+    /* 	#swagger.tags = ['AGENDA-GESTACIONAL']
+     #swagger.description = 'Endpoint para crear o actualizar el registro de la semana de gestacion del paciente' */
   try {
     const savedAgenda = await t05AgendaGestacionalService.saveOrUpdateT05AgendaGestacional(req.body);
 
@@ -89,6 +98,8 @@ const saveOrUpdateT05AgendaGestacional = async (req, res) => {
  * Sincronizar un arreglo de registros (para sincronización móvil)
  */
 const saveOrUpdAgendaGestacionalSync = async (req, res) => {
+      /* 	#swagger.tags = ['AGENDA-GESTACIONAL']
+     #swagger.description = 'Endpoint para crear o actualizar los registros de la semana de gestacion del paciente' */
   try {
     const results = await t05AgendaGestacionalService.saveOrUpdAgendaGestacionalArray(req.body);
 
@@ -105,10 +116,9 @@ const saveOrUpdAgendaGestacionalSync = async (req, res) => {
   }
 };
 
-/**
- * Eliminar un registro específico por su PK compuesta (id, nrosem)
- */
 const deleteT05AgendaGestacional = async (req, res) => {
+      /* 	#swagger.tags = ['AGENDA-GESTACIONAL']
+     #swagger.description = 'Endpoint para eliminar el registro de la semana de gestacion del paciente' */
   try {
     const { id, nrosem } = req.params;
 

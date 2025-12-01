@@ -7,8 +7,8 @@ const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const getT05suplement = async (req, res) => {
 	console.log('HI suplement ID : ' + req.params.ideven + ' - ideven : ' + req.ideven);
 	console.log(req.body);
-	/* 	#swagger.tags = ['TMANZANA']
-        #swagger.description = 'Endpoint to suplement a specific' */
+	/* 	#swagger.tags = ['REGISTRO-SUPLEMENTOS']
+        #swagger.description = 'Endpoint para consultar un suplemento especifico de la toma de una Gestante' */
         try {
           var etapagesta = await t05suplementService.getAllT05suplement(req.params.ideven);
           //let jsonetapagesta = JSON.parse(JSON.stringify(etapagesta));
@@ -21,8 +21,8 @@ const getT05suplement = async (req, res) => {
 };
 
 const createT05suplement = async (req, res) => {
-  /* 	#swagger.tags = ['Personal']
-     #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+  /* 	#swagger.tags = ['REGISTRO-SUPLEMENTOS']
+     #swagger.description = 'Endpoint to crear el registro de una toma de suplemento de la Gestante' */
 
 /* #swagger.security = [{
          "bearerAuth": []
@@ -43,8 +43,8 @@ const createT05suplement = async (req, res) => {
 };
 
 const udpT05suplement = async (req, res) => {
-/* 	#swagger.tags = ['Personal']
-#swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+ /* 	#swagger.tags = ['REGISTRO-SUPLEMENTOS']
+     #swagger.description = 'Endpoint to actualizar el registro de una toma de suplemento de la Gestante' */
 
 /* #swagger.security = [{
   "bearerAuth": []
@@ -65,8 +65,8 @@ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
 };
 
 const saveOrUpdateT05suplement = async (req, res) => {
-/* 	#swagger.tags = ['Personal']
-#swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+ /* 	#swagger.tags = ['REGISTRO-SUPLEMENTOS']
+     #swagger.description = 'Endpoint to crear o actualizar el registro de una toma de suplemento de la Gestante' */
 
 /* #swagger.security = [{
   "bearerAuth": []
@@ -87,8 +87,8 @@ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
 };
 
 const saveOrupdSupleSync = async (req, res) => {
-  /* 	#swagger.tags = ['Personal']
-  #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+ /* 	#swagger.tags = ['REGISTRO-SUPLEMENTOS']
+     #swagger.description = 'Endpoint to crear o actualizar el registro de varias tomas de suplemento de la Gestante' */
   
   /* #swagger.security = [{
     "bearerAuth": []

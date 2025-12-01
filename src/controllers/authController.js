@@ -7,7 +7,7 @@ const config = require("config");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 
 const signup = async (req, res) => {
-	/* 	#swagger.tags = ['Auth']
+	/* 	#swagger.tags = ['AUTH']
         #swagger.description = 'Endpoint to signup a specific user' */
 	console.log(req.body);
 	const { /*fullname,*/ username, password/*, confirmPassword*/ } = req.body;
@@ -42,7 +42,7 @@ const signup = async (req, res) => {
 const signin = async (req, res) => {
 	console.log('Hola Peru');
 	console.log(req.body);
-	/* 	#swagger.tags = ['Auth']
+	/* 	#swagger.tags = ['AUTH']
         #swagger.description = 'Endpoint to signin a specific user' */
 	const { username, password } = req.body;
 	try {
@@ -67,8 +67,8 @@ const findUserWithPassword = async (username, password) => {
 };
 
 const createUserapp = async (req, res) => {
-	 	/* 	#swagger.tags = ['Personal']
-        #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+	/* 	#swagger.tags = ['USUARIO']
+	#swagger.description = 'Endpoint para crear un usuario de la app movil' */
 
 	/* #swagger.security = [{
             "bearerAuth": []
@@ -89,8 +89,8 @@ const createUserapp = async (req, res) => {
   };
 
   const udpUserapp = async (req, res) => {
-	/* 	#swagger.tags = ['Personal']
-   #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+	/* 	#swagger.tags = ['USUARIO']
+	#swagger.description = 'Endpoint para actualizar los datos de un usuario de la app movil' */
 
 /* #swagger.security = [{
 	   "bearerAuth": []
@@ -111,8 +111,8 @@ try {
 };
 
 const saveOrupdUserapp = async (req, res) => {
-	/* 	#swagger.tags = ['Personal']
-   #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+	/* 	#swagger.tags = ['USUARIO']
+	#swagger.description = 'Endpoint para crear o actualizar los datos de un usuario de la app movil' */
 
 /* #swagger.security = [{
 	   "bearerAuth": []
@@ -133,8 +133,8 @@ try {
 };
 
 const saveOrupdUserSync = async (req, res) => {
-	/* 	#swagger.tags = ['Personal']
-   #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+	/* 	#swagger.tags = ['USUARIO']
+	#swagger.description = 'Endpoint para crear o actualizar los datos de los usuarios de la app movil' */
 
 /* #swagger.security = [{
 	   "bearerAuth": []
@@ -203,9 +203,9 @@ const verify = async (req, res) => {
 };
 
 const getUserFullData = async (req, res) => {
-	/* #swagger.tags = ['Auth']
-	   #swagger.description = 'Obtiene toda la información completa de un usuario por username' */
-  
+	/* #swagger.tags = ['USUARIO']
+	   #swagger.description = 'Endpoint para recuperar toda la información completa de un usuario por username y su importacion den el app movil' */
+  	
 	try {
 		const { username } = req.body; // o req.body, según cómo lo envíes
 	  console.log('getUserFullData datosall : ',username);	

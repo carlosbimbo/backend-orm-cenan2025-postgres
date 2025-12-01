@@ -7,8 +7,8 @@ const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const getT05etapagesta = async (req, res) => {
 	console.log('HI etapagesta ID : ' + req.params.id + ' - userid : ' + req.userid);
 	console.log(req.body);
-	/* 	#swagger.tags = ['TMANZANA']
-        #swagger.description = 'Endpoint to MANZANAS a specific ZONA' */
+   /* 	#swagger.tags = ['ETAPA-GESTACIONAL']
+     #swagger.description = 'Endpoint para consultar datos todo el periodo gestacional del paciente' */
         try {
           var etapagesta = await t05etapagestaService.getAllT05etapagesta(req.params.id);
           //let jsonetapagesta = JSON.parse(JSON.stringify(etapagesta));
@@ -21,8 +21,8 @@ const getT05etapagesta = async (req, res) => {
 };
 
 const createT05etapagesta = async (req, res) => {
-  /* 	#swagger.tags = ['Personal']
-     #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+   /* 	#swagger.tags = ['ETAPA-GESTACIONAL']
+     #swagger.description = 'Endpoint para crear el registro con los datos referente al periodo gestacional del paciente' */
 
 /* #swagger.security = [{
          "bearerAuth": []
@@ -44,8 +44,8 @@ const createT05etapagesta = async (req, res) => {
 };
 
 const udpT05etapagesta = async (req, res) => {
-/* 	#swagger.tags = ['Personal']
-#swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+   /* 	#swagger.tags = ['ETAPA-GESTACIONAL']
+     #swagger.description = 'Endpoint para actualizar el registro referente al periodo gestacional del paciente' */
 
 /* #swagger.security = [{
   "bearerAuth": []
@@ -66,8 +66,8 @@ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
 };
 
 const saveOrupdT05etapagesta = async (req, res) => {
-/* 	#swagger.tags = ['Personal']
-#swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+   /* 	#swagger.tags = ['ETAPA-GESTACIONAL']
+     #swagger.description = 'Endpoint para crear o actualizar el registro referente al periodo gestacional del paciente' */
 
 /* #swagger.security = [{
   "bearerAuth": []
@@ -88,8 +88,8 @@ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
 };
 
 const saveOrupdT05etapagestaArray = async (req, res) => {
-  /* 	#swagger.tags = ['Personal']
-  #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+   /* 	#swagger.tags = ['ETAPA-GESTACIONAL']
+     #swagger.description = 'Endpoint para crear o actualizar los registros referentes al periodo gestacional de los pacientes' */
   
   /* #swagger.security = [{
     "bearerAuth": []

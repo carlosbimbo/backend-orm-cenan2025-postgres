@@ -7,8 +7,8 @@ const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const getT05regisevent = async (req, res) => {
 	console.log('HI regisevent ID : ' + req.params.ideven + ' - ideven : ' + req.ideven);
 	console.log(req.body);
-	/* 	#swagger.tags = ['TMANZANA']
-        #swagger.description = 'Endpoint to regisevent a specific' */
+   /* 	#swagger.tags = ['REGISTRO-EVENTOS']
+     #swagger.description = 'Endpoint para consultar los registros referentes eventos de las gestantes' */
         try {
           var etapagesta = await t05regiseventService.getAllT05eventuser(req.params.ideven);
           //let jsonetapagesta = JSON.parse(JSON.stringify(etapagesta));
@@ -21,8 +21,8 @@ const getT05regisevent = async (req, res) => {
 };
 
 const createT05regisevent = async (req, res) => {
-  /* 	#swagger.tags = ['Personal']
-     #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+   /* 	#swagger.tags = ['REGISTRO-EVENTOS']
+     #swagger.description = 'Endpoint para crear el registro referente evento de la gestante' */
 
 /* #swagger.security = [{
          "bearerAuth": []
@@ -43,8 +43,8 @@ const createT05regisevent = async (req, res) => {
 };
 
 const udpT05regisevent = async (req, res) => {
-/* 	#swagger.tags = ['Personal']
-#swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+   /* 	#swagger.tags = ['REGISTRO-EVENTOS']
+     #swagger.description = 'Endpoint para actualizar el registro referente evento de la gestante' */
 
 /* #swagger.security = [{
   "bearerAuth": []
@@ -65,8 +65,8 @@ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
 };
 
 const saveOrUpdateT05event = async (req, res) => {
-/* 	#swagger.tags = ['Personal']
-#swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+   /* 	#swagger.tags = ['REGISTRO-EVENTOS']
+     #swagger.description = 'Endpoint para crear o actualizar el registro referente evento de la gestante' */
 
 /* #swagger.security = [{
   "bearerAuth": []
@@ -87,8 +87,8 @@ res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
 };
 
 const saveOrupdEventUserSync = async (req, res) => {
-  /* 	#swagger.tags = ['Personal']
-  #swagger.description = 'Endpoint to crear Personal by nombre de usuario' */
+   /* 	#swagger.tags = ['REGISTRO-EVENTOS']
+     #swagger.description = 'Endpoint para crear o actualizar los registros referentes a eventos de las gestantes' */
   
   /* #swagger.security = [{
     "bearerAuth": []

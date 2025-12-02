@@ -12,11 +12,14 @@ const t05supleController = require("../controllers/t_05_registro_suplementos_con
 const t05agendaGestaController = require("../controllers/t_05_agenda_gestacional_controller");
 const t05diasGestacionController = require("../controllers/t_05_dias_gestacion_controller");
 const uploadCtrl = require("../controllers/upload.controller");
+const fotosCtrl = require("../controllers/fotos.controller");
 
 const router = express.Router();
 
 router.post("/signup", authController.signup);
 router.post("/signin", authController.signin);
+
+router.get("/fotos-usuario/:username", fotosCtrl.getFotosPorUsuario);
 
 router.get("/findetapagesta/:id", authMiddleware.verifyToken, t05etapagestaController.getT05etapagesta);
 router.get("/findregisevent/:id", authMiddleware.verifyToken, t05regiseventController.getT05regisevent);

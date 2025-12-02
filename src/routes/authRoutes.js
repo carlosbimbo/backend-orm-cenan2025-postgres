@@ -4,15 +4,16 @@
 const express = require("express");
 const authController = require("../controllers/authController");
 const authMiddleware = require("../middlewares/authMiddleware");
+const uploadMiddleware = require("../middlewares/uploadMiddleware");
 
 const t05etapagestaController = require("../controllers/t05_etapagesta_controller");
 const t05regiseventController = require("../controllers/t05_regisevent_controller");
 const t05supleController = require("../controllers/t_05_registro_suplementos_controller");
 const t05agendaGestaController = require("../controllers/t_05_agenda_gestacional_controller");
 const t05diasGestacionController = require("../controllers/t_05_dias_gestacion_controller");
+const uploadCtrl = require("../controllers/upload.controller");
 
 const router = express.Router();
-
 
 router.post("/signup", authController.signup);
 router.post("/signin", authController.signin);
@@ -48,6 +49,7 @@ router.post("/newsuple", authMiddleware.verifyToken, t05supleController.createT0
 router.post("/updsuple", authMiddleware.verifyToken, t05supleController.udpT05suplement);
 router.post("/savesuple", authMiddleware.verifyToken, t05supleController.saveOrUpdateT05suplement);
 router.post("/syncallsuple", authMiddleware.verifyToken, t05supleController.saveOrupdSupleSync);
+router.post("/upload-fotos", uploadMiddleware.array("fotos", 50), uploadCtrl.saveFotosTomaSuple);
 /*fin for user suplement*/
 
 /*for user agent gesta*/

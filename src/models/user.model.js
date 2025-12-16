@@ -61,7 +61,7 @@ function model(sequelize) {
       type: DataTypes.STRING(255),
       allowNull: true,
     },
-    expoPushToken: {
+    expopushtoken: {
       type: DataTypes.STRING(255),
       allowNull: true,
     },

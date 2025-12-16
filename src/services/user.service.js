@@ -21,17 +21,17 @@ function cleanSection(section) {
   return section;
 }
 
-const updateExpoPushTokenById = async (userId, expoPushToken) => {
+const updateExpoPushTokenById = async (userId, expopushtoken) => {
   if (!userId) {
     throw new Error("El parámetro userId es obligatorio");
   }
 
-  if (!expoPushToken) {
-    throw new Error("El parámetro expoPushToken es obligatorio");
+  if (!expopushtoken) {
+    throw new Error("El parámetro expopushtoken es obligatorio");
   }
 
   await db.User.update(
-    { expoPushToken },
+    { expopushtoken },
     {
       where: { id: userId },
       silent: false, 
@@ -39,7 +39,7 @@ const updateExpoPushTokenById = async (userId, expoPushToken) => {
   );
 
   return await db.User.findByPk(userId, {
-    attributes: ["id", "username", "expoPushToken", "updated_at"],
+    attributes: ["id", "username", "expopushtoken", "updated_at"],
   });
 };
 

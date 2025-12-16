@@ -232,9 +232,9 @@ const getUserFullData = async (req, res) => {
 	   #swagger.description = 'Endpoint para guardar el token para las notificaciones por usuario' */
 
 	try {
-	  const { userId, expoPushToken } = req.body;
+	  const { userId, expopushtoken } = req.body;
   
-	  const user = await usuarioService.updateExpoPushTokenById(userId, expoPushToken);
+	  const user = await usuarioService.updateExpoPushTokenById(userId, expopushtoken);
   
 	  return res.status(200).json({
 		message: "Token actualizado",

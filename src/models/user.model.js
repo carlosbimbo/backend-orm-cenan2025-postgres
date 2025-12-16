@@ -61,13 +61,19 @@ function model(sequelize) {
       type: DataTypes.STRING(255),
       allowNull: true,
     },
+    expoPushToken: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
   };
 
   const options = {
     freezeTableName: true, 
-    timestamps: false,    
+    timestamps: true,    
     tableName: "users",
-    schema: "public",
+    schema: "public",    
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
   };
 
   return sequelize.define("users", attributes, options);

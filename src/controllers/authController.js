@@ -51,6 +51,7 @@ const signin = async (req, res) => {
 		await validateResponse(response, res);
 	
 	} catch (error) {
+		console.log(error);
 		res.status(500).json({ error: StatusMessage.INTERNAL_SERVER_ERROR });
 	}
 };
@@ -225,6 +226,27 @@ const getUserFullData = async (req, res) => {
 	  });
 	}
   };
+
+  const saveExpoPushToken = async (req, res) => {
+	/* #swagger.tags = ['USUARIO']
+	   #swagger.description = 'Endpoint para guardar el token para las notificaciones por usuario' */
+
+	try {
+	  const { userId, expoPushToken } = req.body;
+  
+	  const user = await usuarioService.updateExpoPushTokenById(userId, expoPushToken);
+  
+	  return res.status(200).json({
+		message: "Token actualizado",
+		user,
+	  });
+	} catch (error) {
+	  return res.status(400).json({
+		error: error.message,
+	  });
+	}
+  };
+  
   
 
-module.exports = { signin, signup, simpleUserauthentication, findUserWithPassword, verify,createUserapp,udpUserapp,saveOrupdUserapp,getUserFullData,saveOrupdUserSync };
+module.exports = { signin, signup, simpleUserauthentication, findUserWithPassword, verify,createUserapp,udpUserapp,saveOrupdUserapp,getUserFullData,saveOrupdUserSync,saveExpoPushToken };

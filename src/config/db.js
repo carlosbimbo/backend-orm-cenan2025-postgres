@@ -14,6 +14,7 @@ const URI = `postgres://${process.env.DB_USER}:${process.env.PASSWORD}@${process
 
 const sequelize = new Sequelize(URI, {
   dialect: process.env.DIALECT || "postgres",
+  timezone: 'America/Lima', 
   logging: false, 
   dialectOptions: {
     ssl: process.env.DB_SSL === "true" ? { require: true, rejectUnauthorized: false } : false,

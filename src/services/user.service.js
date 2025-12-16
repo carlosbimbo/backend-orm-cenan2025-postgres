@@ -21,6 +21,28 @@ function cleanSection(section) {
   return section;
 }
 
+const updateExpoPushTokenById = async (userId, expoPushToken) => {
+  if (!userId) {
+    throw new Error("El parámetro userId es obligatorio");
+  }
+
+  if (!expoPushToken) {
+    throw new Error("El parámetro expoPushToken es obligatorio");
+  }
+
+  await db.User.update(
+    { expoPushToken },
+    {
+      where: { id: userId },
+      silent: false, 
+    }
+  );
+
+  return await db.User.findByPk(userId, {
+    attributes: ["id", "username", "expoPushToken", "updated_at"],
+  });
+};
+
 const getAll = async () => {
   return await db.User.findAll();
 };
@@ -316,5 +338,6 @@ module.exports = {
   execquery,
   saveOrUpdateUser,
   getUserDataByUsername,
-  saveOrUpdateUserArray
+  saveOrUpdateUserArray,
+  updateExpoPushTokenById
 };

@@ -25,6 +25,7 @@ router.get("/findetapagesta/:id", authMiddleware.verifyToken, t05etapagestaContr
 router.get("/findregisevent/:id", authMiddleware.verifyToken, t05regiseventController.getT05regisevent);
 
 /*for user appcenan*/
+router.post("/save-userexpotoken", authController.saveExpoPushToken);
 router.post("/newuserfirstsign", authController.saveOrupdUserapp);
 router.post("/newuserapp", authMiddleware.verifyToken, authController.createUserapp);
 router.post("/updateuserapp", authMiddleware.verifyToken, authController.udpUserapp);

@@ -14,10 +14,13 @@ const t05diasGestacionController = require("../controllers/t_05_dias_gestacion_c
 const uploadCtrl = require("../controllers/upload.controller");
 const fotosCtrl = require("../controllers/fotos.controller");
 
+const alarmCtrl = require("../controllers/alarm.controller");
+
 const router = express.Router();
 
 router.post("/signup", authController.signup);
 router.post("/signin", authController.signin);
+router.post("/alarmsgesta", alarmCtrl.runAlarmManually);
 
 router.get("/fotos-usuario/:username", fotosCtrl.getFotosPorUsuario);
 

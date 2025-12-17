@@ -5,6 +5,7 @@
 const express = require('express')
 const path = require('path');
 const configureMiddleware = require("../src/config/middleware");
+require("./jobs/alarmCron.job");
 const app = express()
 
 const router = require('./routes/authRoutes')

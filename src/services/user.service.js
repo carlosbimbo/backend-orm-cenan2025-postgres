@@ -162,11 +162,28 @@ const findUserByName = async (username) => {
   });
 };
 
+//comment 19052026
+/*
 const findUserByUserandPassword = async (username,password) => {
   console.log('username : ' + username + ' - password : ' + password )
   return await db.User.findOne({
     where: {
       username: username,
+      password: password,
+    }
+  });
+};
+*/
+
+const findUserByUserandPassword = async (username, password) => {
+  console.log('username : ' + username + ' - password : ' + password); 
+  const cleanUsername = username.trim().toLowerCase();
+  return await db.User.findOne({
+    where: {
+      username: Sequelize.where(
+        Sequelize.fn('lower', Sequelize.col('username')),
+        cleanUsername
+      ),
       password: password,
     }
   });

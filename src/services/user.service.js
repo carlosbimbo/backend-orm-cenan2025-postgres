@@ -221,9 +221,16 @@ const execquery = async () => {
 
 const getUserDataByUsername = async (username) => {
   try {
+
     const cleanUsername = username.trim().toLowerCase();
+
     const user = await db.User.findOne({
-      where: { cleanUsername },
+      where: db.Sequelize.where(
+        db.Sequelize.fn('lower', db.Sequelize.col('username')),
+        cleanUsername
+      ),
+    /*const user = await db.User.findOne({
+      where: { username },*/
       include: [
         { model: db.T05_etapagesta, as: "etapasGestacionales", required: false },
         { model: db.T05_regisevent, as: "registroEventos", required: false },

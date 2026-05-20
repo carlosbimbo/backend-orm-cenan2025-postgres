@@ -175,6 +175,21 @@ const findUserByUserandPassword = async (username,password) => {
 };
 */
 
+const { where, fn, col } = db.Sequelize;
+const findUserByUserandPassword = async (username, password) => {
+  const cleanUsername = username.trim().toLowerCase();
+
+  return await db.User.findOne({
+    where: {
+      [db.Sequelize.Op.and]: [
+        where(fn('lower', col('username')), cleanUsername),
+        { password }
+      ]
+    }
+  });
+};
+
+/*
 const findUserByUserandPassword = async (username, password) => {
   console.log('usernamezz : ' + username + ' - password : ' + password); 
   const cleanUsername = username.trim().toLowerCase();
@@ -188,6 +203,7 @@ const findUserByUserandPassword = async (username, password) => {
     }
   });
 };
+*/
 
 const execquery = async () => {
   //const newUser = await db.sequelize.query("SELECT * FROM User", { type: QueryTypes.SELECT });

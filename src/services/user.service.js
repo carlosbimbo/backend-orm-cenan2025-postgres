@@ -176,12 +176,12 @@ const findUserByUserandPassword = async (username,password) => {
 */
 
 const findUserByUserandPassword = async (username, password) => {
-  console.log('username : ' + username + ' - password : ' + password); 
+  console.log('usernamezz : ' + username + ' - password : ' + password); 
   const cleanUsername = username.trim().toLowerCase();
   return await db.User.findOne({
     where: {
-      username: Sequelize.where(
-        Sequelize.fn('lower', Sequelize.col('username')),
+      username: db.Sequelize.where(
+        db.Sequelize.fn('lower', Sequelize.col('username')),
         cleanUsername
       ),
       password: password,

@@ -221,8 +221,9 @@ const execquery = async () => {
 
 const getUserDataByUsername = async (username) => {
   try {
+    const cleanUsername = username.trim().toLowerCase();
     const user = await db.User.findOne({
-      where: { username },
+      where: { cleanUsername },
       include: [
         { model: db.T05_etapagesta, as: "etapasGestacionales", required: false },
         { model: db.T05_regisevent, as: "registroEventos", required: false },

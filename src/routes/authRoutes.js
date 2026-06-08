@@ -13,8 +13,9 @@ const t05agendaGestaController = require("../controllers/t_05_agenda_gestacional
 const t05diasGestacionController = require("../controllers/t_05_dias_gestacion_controller");
 const uploadCtrl = require("../controllers/upload.controller");
 const fotosCtrl = require("../controllers/fotos.controller");
-
 const alarmCtrl = require("../controllers/alarm.controller");
+
+const t05regisHemoglobinaController = require("../controllers/t_05_registro_hemoglobina_controller");
 
 const router = express.Router();
 
@@ -67,6 +68,12 @@ router.post("/syncallagendagesta", authMiddleware.verifyToken, t05agendaGestaCon
 router.post("/syncalldaysgesta", authMiddleware.verifyToken, t05diasGestacionController.saveOrUpdT05diasGestacionSync);
 /*fin for days gesta*/
 
+/*for registro de Hemoglo*/
+router.post("/newregishemo", authMiddleware.verifyToken, t05regisHemoglobinaController.createT05regishemoglo);
+router.post("/updregishemo", authMiddleware.verifyToken, t05regisHemoglobinaController.udpT05regishemoglo);
+router.post("/saveregishemo", authMiddleware.verifyToken, t05regisHemoglobinaController.saveOrUpdateT05regisHemo);
+router.post("/syncallregishemo", authMiddleware.verifyToken, t05regisHemoglobinaController.saveOrupdRegisHemoSync);
+/*fin for registro de Hemoglo*/
 
 router.get("/profile", authMiddleware.verifyToken, (req, res) => {
   	/*#swagger.tags = ['AUTH']

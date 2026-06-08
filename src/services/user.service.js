@@ -307,7 +307,7 @@ const getUserDataByUsername = async (username) => {
   const hemoglobinas =
       user.registroHemoglo && user.registroHemoglo.length > 0
         ? {
-              eventos: user.registroHemoglo.map((e) =>
+              hemoglobinas: user.registroHemoglo.map((e) =>
                 cleanObject({
                   idh: e.idh,
                   iduser: e.iduser,

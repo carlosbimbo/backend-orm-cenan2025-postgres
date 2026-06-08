@@ -39,7 +39,7 @@ db.User.hasMany(db.T05_regisevent, { foreignKey: "iduser", as: "registroEventos"
 db.User.hasMany(db.T05_suplement, { foreignKey: "iduser", as: "registroSuplementos" });
 db.User.hasMany(db.T05_agenda_gestacional, { foreignKey: "id", as: "agendaGestacional" });
 db.User.hasMany(db.T05_dias_gestacion, { foreignKey: "iduser", as: "diasGestacion" });
-db.User.hasMany(db.T05_regishemoglo, { foreignKey: "iduser", as: "registroHemogo" });
+db.User.hasMany(db.T05_regishemoglo, { foreignKey: "iduser", as: "registroHemoglo" });
 
 db.User.hasMany(db.AlarmExecution, {
   foreignKey: "user_id",

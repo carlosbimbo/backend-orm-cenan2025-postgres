@@ -237,6 +237,7 @@ const getUserDataByUsername = async (username) => {
         { model: db.T05_suplement, as: "registroSuplementos", required: false },
         { model: db.T05_agenda_gestacional, as: "agendaGestacional", required: false },
         { model: db.T05_dias_gestacion, as: "diasGestacion", required: false },
+        { model: db.T05_regishemoglo, as: "registroHemoglo", required: false },
       ],
     });
 
@@ -302,6 +303,27 @@ const getUserDataByUsername = async (username) => {
             _cantidad: user.registroEventos.length,
           }
         : undefined;
+
+  const hemoglobinas =
+      user.registroHemoglo && user.registroHemoglo.length > 0
+        ? {
+              eventos: user.registroHemoglo.map((e) =>
+                cleanObject({
+                  idh: e.idh,
+                  iduser: e.iduser,
+                  hemo: e.hemo,
+                  fecha: e.fecha,
+                  hora: e.hora,
+                  lat: e.lat,
+                  long: e.long,
+                  altu: e.altu,
+                  estado: e.estado,
+                  obs: e.obs,
+                })
+              ),
+              _cantidad: user.registroHemoglo.length,
+            }
+          : undefined;
     
     const suplementos =
       user.registroSuplementos && user.registroSuplementos.length > 0
@@ -355,6 +377,7 @@ const getUserDataByUsername = async (username) => {
       ...(etapaGesta && { t_05_etapa_gestacional: etapaGesta }),
       ...(userInfo && { users: userInfo }),
       ...(eventos && { t_05_registro_eventos: eventos }),
+      ...(hemoglobinas && { t_05_registro_hemoglobina: hemoglobinas }),      
       ...(suplementos && { t_05_registro_suplementos: suplementos }),
       ...(agendaGestacional && { t_05_agenda_gestacional: agendaGestacional }),
       ...(diasGestacion && { t_05_dias_gestacion: diasGestacion }),

@@ -279,6 +279,7 @@ const getUserDataByUsername = async (username) => {
                 calcu_nrodias: g.calcu_nrodias,
                 calcu_nrodias_parto: g.calcu_nrodias_parto,
                 calcu_fecaprox_parto: g.calcu_fecaprox_parto,
+                eco_fechaori: g.eco_fechaori,
               })
             ),
             _cantidad: user.etapasGestacionales.length,

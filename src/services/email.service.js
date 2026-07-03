@@ -5,7 +5,7 @@ require('dotenv').config();
 // Inicializamos Resend con tu variable de entorno
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const sendRecoveryEmail = async (toEmail, newPassword) => {
+const sendRecoveryEmail = async (toEmail, newPassword,nombuser) => {
     try {
         const data = await resend.emails.send({
             from: 'GestApp <no-reply@macrocorpsystem.com>', 
@@ -29,7 +29,7 @@ const sendRecoveryEmail = async (toEmail, newPassword) => {
                     </tr>
                     <tr>
                         <td style="padding: 40px 30px; text-align: center;">
-                            <h2 style="color: #78284A; font-size: 22px; margin-bottom: 20px;">¡Hola, futura mamá!</h2>
+                            <h2 style="color: #78284A; font-size: 22px; margin-bottom: 20px;">¡Hola ${nombuser}, futura mamá!</h2>
                             <p style="color: #501A31; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
                                 Hemos recibido una solicitud para recuperar tu contraseña. Aquí tienes tu nueva clave temporal de 4 dígitos:
                             </p>

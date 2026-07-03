@@ -249,12 +249,12 @@ const getUserFullData = async (req, res) => {
   };
   
   const recoverPassword = async (req, res) => {
-    const { email, newPassword } = req.body;
+    const { email, newPassword,nombape } = req.body;
 
-    if (!email || !newPassword) {
+    if (!email || !newPassword || !nombape) {
         return res.status(400).json({ 
             status: 'ERROR', 
-            message: 'El email y la nueva contraseña son obligatorios.' 
+            message: 'El email y la nueva contraseña son obligatorios y tambien los nombres del usuario.' 
         });
     }
 
@@ -263,7 +263,7 @@ const getUserFullData = async (req, res) => {
         // await User.update({ password: newPassword }, { where: { username: email } });
 
         // Enviamos el correo
-        await sendRecoveryEmail(email, newPassword);
+        await sendRecoveryEmail(email, newPassword,nombape);
         
         return res.status(200).json({ 
             status: 'OK', 

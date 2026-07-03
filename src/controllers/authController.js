@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const { StatusMessage } = require("../utils/statusMessage");
 const config = require("config");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
+const { sendRecoveryEmail } = require('../services/email.service');
 
 const signup = async (req, res) => {
 	/* 	#swagger.tags = ['AUTH']
@@ -247,6 +248,34 @@ const getUserFullData = async (req, res) => {
 	}
   };
   
-  
+  const recoverPassword = async (req, res) => {
+    const { email, newPassword } = req.body;
 
-module.exports = { signin, signup, simpleUserauthentication, findUserWithPassword, verify,createUserapp,udpUserapp,saveOrupdUserapp,getUserFullData,saveOrupdUserSync,saveExpoPushToken };
+    if (!email || !newPassword) {
+        return res.status(400).json({ 
+            status: 'ERROR', 
+            message: 'El email y la nueva contraseña son obligatorios.' 
+        });
+    }
+
+    try {
+        // OPCIONAL: Si tu backend también guarda la contraseña en Postgres, actualízala aquí usando Sequelize
+        // await User.update({ password: newPassword }, { where: { username: email } });
+
+        // Enviamos el correo
+        await sendRecoveryEmail(email, newPassword);
+        
+        return res.status(200).json({ 
+            status: 'OK', 
+            message: 'Correo de recuperación enviado exitosamente.' 
+        });
+    } catch (error) {
+        console.error("❌ Error enviando correo con Resend:", error);
+        return res.status(500).json({ 
+            status: 'ERROR', 
+            message: 'Ocurrió un error al enviar el correo.' 
+        });
+    }
+};
+
+module.exports = { signin, signup, simpleUserauthentication, findUserWithPassword, verify,createUserapp,udpUserapp,saveOrupdUserapp,getUserFullData,saveOrupdUserSync,saveExpoPushToken,recoverPassword };

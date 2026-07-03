@@ -75,6 +75,8 @@ router.post("/saveregishemo", authMiddleware.verifyToken, t05regisHemoglobinaCon
 router.post("/syncallregishemo", authMiddleware.verifyToken, t05regisHemoglobinaController.saveOrupdRegisHemoSync);
 /*fin for registro de Hemoglo*/
 
+router.post("/recover-password", authController.recoverPassword);
+
 router.get("/profile", authMiddleware.verifyToken, (req, res) => {
   	/*#swagger.tags = ['AUTH']
         #swagger.description = 'Endpoint to see profile a specific user later signin' */

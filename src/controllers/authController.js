@@ -259,7 +259,7 @@ const getUserFullData = async (req, res) => {
     }
 
     try {
-        // OPCIONAL: Si tu backend también guarda la contraseña en Postgres, actualízala aquí usando Sequelize
+        // OPCIONAL: Si el backend también guarda la contraseña en Postgres, actualízala aquí usando Sequelize
         // await User.update({ password: newPassword }, { where: { username: email } });
 
         // Enviamos el correo
@@ -278,4 +278,28 @@ const getUserFullData = async (req, res) => {
     }
 };
 
-module.exports = { signin, signup, simpleUserauthentication, findUserWithPassword, verify,createUserapp,udpUserapp,saveOrupdUserapp,getUserFullData,saveOrupdUserSync,saveExpoPushToken,recoverPassword };
+const getUserFullDataByEmail = async (req, res) => {
+	/* #swagger.tags = ['USUARIO']
+	   #swagger.description = 'Endpoint para recuperar toda la información completa de un usuario por email y su importacion den el app movil pero solo valido para la recuperacion del password para el login' */
+  	
+	try {
+		const { email } = req.body; 
+	  console.log('getUserFullDataByEmail datosall : ',email);	
+	  const userData = await usuarioService.getUserDataByEmail(email);
+  
+	  if (!userData) {
+		return res.status(404).json({ message: "Usuario no encontrado" });
+	  }
+  
+	  return res.status(200).json(userData);
+  
+	} catch (error) {
+	  console.error("❌ Error en getUserFullDataByEmail:", error);
+	  return res.status(500).json({
+		message: "Error interno del servidor",
+		error: error.message,
+	  });
+	}
+  };
+
+module.exports = { signin, signup, simpleUserauthentication, findUserWithPassword, verify,createUserapp,udpUserapp,saveOrupdUserapp,getUserFullData,saveOrupdUserSync,saveExpoPushToken,recoverPassword,getUserFullDataByEmail };

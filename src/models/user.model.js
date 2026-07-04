@@ -64,6 +64,10 @@ function model(sequelize) {
     expopushtoken: {
       type: DataTypes.STRING(255),
       allowNull: true,
+    },   
+    email: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
     },
   };
 

@@ -36,6 +36,7 @@ router.post("/updateuserapp", authMiddleware.verifyToken, authController.udpUser
 router.post("/saveuserapp", authMiddleware.verifyToken, authController.saveOrupdUserapp);
 router.post("/getalldatauser", authMiddleware.verifyToken, authController.getUserFullData);
 router.post("/syncalluser", authMiddleware.verifyToken, authController.saveOrupdUserSync);
+router.post("/getalldatauserbyemail", authController.getUserFullDataByEmail);
 /*fin for user appcenan*/
 
 /*for user etapagesta*/

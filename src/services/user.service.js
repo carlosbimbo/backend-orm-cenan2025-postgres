@@ -258,6 +258,7 @@ const getUserDataByUsername = async (username) => {
           longi_viv: user.longi_viv,
           altura_viv: user.altura_viv,
           profileimage: user.profileimage,
+          email: user.email,
         }),
       ],
       _cantidad: user ? 1 : 0,
@@ -391,6 +392,180 @@ const getUserDataByUsername = async (username) => {
   }
 };
 
+//retrieve userdata by email 04072026
+const getUserDataByEmail = async (email) => {
+  try {
+
+    const cleanEmail = email.trim().toLowerCase();
+
+    const user = await db.User.findOne({
+      where: db.Sequelize.where(
+        db.Sequelize.fn('lower', db.Sequelize.col('email')),
+        cleanEmail
+      ),
+    /*const user = await db.User.findOne({
+      where: { username },*/
+      include: [
+        { model: db.T05_etapagesta, as: "etapasGestacionales", required: false },
+        { model: db.T05_regisevent, as: "registroEventos", required: false },
+        { model: db.T05_suplement, as: "registroSuplementos", required: false },
+        { model: db.T05_agenda_gestacional, as: "agendaGestacional", required: false },
+        { model: db.T05_dias_gestacion, as: "diasGestacion", required: false },
+        { model: db.T05_regishemoglo, as: "registroHemoglo", required: false },
+      ],
+    });
+
+    if (!user) return null;
+
+    const userInfo = {
+      usuarios: [
+        cleanObject({
+          id: user.id,
+          username: user.username,
+          password: user.password,
+          dni: user.dni,
+          nombape: user.nombape,
+          lati: user.lati,
+          longi: user.longi,
+          altura: user.altura,
+          lati_viv: user.lati_viv,
+          longi_viv: user.longi_viv,
+          altura_viv: user.altura_viv,
+          profileimage: user.profileimage,
+          email: user.email,
+        }),
+      ],
+      _cantidad: user ? 1 : 0,
+    };   
+    
+    const etapaGesta =
+      user.etapasGestacionales && user.etapasGestacionales.length > 0
+        ? {
+            etapagesta: user.etapasGestacionales.map((g) =>
+              cleanObject({
+                id: g.id,
+                opcgesta: g.opcgesta,
+                fur: g.fur,
+                fec_proba_parto: g.fec_proba_parto,
+                eco_nro_sem_emb: g.eco_nro_sem_emb,
+                eco_nro_dias_emb: g.eco_nro_dias_emb,
+                hemoglo: g.hemoglo,
+                calcu_nrosema: g.calcu_nrosema,
+                calcu_nrodias: g.calcu_nrodias,
+                calcu_nrodias_parto: g.calcu_nrodias_parto,
+                calcu_fecaprox_parto: g.calcu_fecaprox_parto,
+                eco_fechaori: g.eco_fechaori,
+              })
+            ),
+            _cantidad: user.etapasGestacionales.length,
+          }
+        : undefined; 
+    
+    const eventos =
+      user.registroEventos && user.registroEventos.length > 0
+        ? {
+            eventos: user.registroEventos.map((e) =>
+              cleanObject({
+                ideven: e.ideven,
+                iduser: e.iduser,
+                tipo: e.tipo,
+                fecha: e.fecha,
+                hora: e.hora,
+                descrip: e.descrip,
+                alarma: e.alarma,
+                estado: e.estado,
+              })
+            ),
+            _cantidad: user.registroEventos.length,
+          }
+        : undefined;
+
+  const hemoglobinas =
+      user.registroHemoglo && user.registroHemoglo.length > 0
+        ? {
+              hemoglobinas: user.registroHemoglo.map((e) =>
+                cleanObject({
+                  idh: e.idh,
+                  iduser: e.iduser,
+                  hemo: e.hemo,
+                  fecha: e.fecha,
+                  hora: e.hora,
+                  lat: e.lat,
+                  long: e.long,
+                  altu: e.altu,
+                  estado: e.estado,
+                  obs: e.obs,
+                })
+              ),
+              _cantidad: user.registroHemoglo.length,
+            }
+          : undefined;
+    
+    const suplementos =
+      user.registroSuplementos && user.registroSuplementos.length > 0
+        ? {
+            suplement: user.registroSuplementos.map((s) =>
+              cleanObject({
+                idsuple: s.idsuple,
+                iduser: s.iduser,
+                fecha: s.fecha,
+                tipo_suple: s.tipo_suple,
+                foto: s.foto,
+                nro_sema: s.nro_sema,
+                destinationuri: s.destinationuri,
+              })
+            ),
+            _cantidad: user.registroSuplementos.length,
+          }
+        : undefined;
+    
+    const agendaGestacional =
+      user.agendaGestacional && user.agendaGestacional.length > 0
+        ? {
+              agendaGestacional: user.agendaGestacional.map((a) =>
+                cleanObject({
+                  id: a.id,
+                  nrosem: a.nrosem,
+                  fec_marker: a.fec_marker,
+                })
+              ),
+              _cantidad: user.agendaGestacional.length,
+            }
+          : undefined; 
+
+    const diasGestacion =
+        user.diasGestacion && user.diasGestacion.length > 0
+          ? {
+              diasGestacion: user.diasGestacion.map((d) =>
+                  cleanObject({
+                    id_diasg: d.id_diasg,
+                    iduser: d.iduser,
+                    nroseman: d.nroseman,
+                    fec_seman: d.fec_seman,
+                    fec_diagesta: d.fec_diagesta,
+                  })
+                ),
+                _cantidad: user.diasGestacion.length,
+              }
+            : undefined;
+
+    const CENAN2025 = cleanObject({
+      ...(etapaGesta && { t_05_etapa_gestacional: etapaGesta }),
+      ...(userInfo && { users: userInfo }),
+      ...(eventos && { t_05_registro_eventos: eventos }),
+      ...(hemoglobinas && { t_05_registro_hemoglobina: hemoglobinas }),      
+      ...(suplementos && { t_05_registro_suplementos: suplementos }),
+      ...(agendaGestacional && { t_05_agenda_gestacional: agendaGestacional }),
+      ...(diasGestacion && { t_05_dias_gestacion: diasGestacion }),
+    });
+
+    return { CENAN2025 };
+  } catch (error) {
+    console.error("❌ Error al obtener datos del usuario por email:", error);
+    throw new Error("Error interno al obtener los datos del usuario por email");
+  }
+};
+//fin retrieve userdata by email 04072026
 
 module.exports = {
   getAll,
@@ -404,5 +579,6 @@ module.exports = {
   saveOrUpdateUser,
   getUserDataByUsername,
   saveOrUpdateUserArray,
-  updateExpoPushTokenById
+  updateExpoPushTokenById,
+  getUserDataByEmail,
 };

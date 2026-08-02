@@ -17,7 +17,7 @@ const sendRecoveryEmail = async (toEmail, newPassword,nombuser) => {
             <head>
                 <meta charset="UTF-8">
             </head>
-            <body style="font-family: Arial, sans-serif; background-color: #FFF0F2; margin: 0; padding: 20px;">
+            <body style="font-family: Arial, sans-serif; background-color: #85268D; margin: 0; padding: 20px;">
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #FFFFFF; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.1);">
                     <tr>
                         <td align="center" style="background-color: #E91E63; padding: 30px 20px;">

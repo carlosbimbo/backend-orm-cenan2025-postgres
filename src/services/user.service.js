@@ -232,12 +232,12 @@ const getUserDataByUsername = async (username) => {
     /*const user = await db.User.findOne({
       where: { username },*/
       include: [
-        { model: db.T05_etapagesta, as: "etapasGestacionales", required: false },
-        { model: db.T05_regisevent, as: "registroEventos", required: false },
-        { model: db.T05_suplement, as: "registroSuplementos", required: false },
-        { model: db.T05_agenda_gestacional, as: "agendaGestacional", required: false },
-        { model: db.T05_dias_gestacion, as: "diasGestacion", required: false },
-        { model: db.T05_regishemoglo, as: "registroHemoglo", required: false },
+        { model: db.T05_etapagesta, as: "etapasGestacionales", required: false, separate: true },
+        { model: db.T05_regisevent, as: "registroEventos", required: false, separate: true },
+        { model: db.T05_suplement, as: "registroSuplementos", required: false, separate: true },
+        { model: db.T05_agenda_gestacional, as: "agendaGestacional", required: false, separate: true },
+        { model: db.T05_dias_gestacion, as: "diasGestacion", required: false, separate: true },
+        { model: db.T05_regishemoglo, as: "registroHemoglo", required: false, separate: true },
       ],
     });
 

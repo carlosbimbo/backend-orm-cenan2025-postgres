@@ -5,9 +5,9 @@ require('dotenv').config();
 // Inicializamos Resend con tu variable de entorno
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const sendRecoveryEmail = async (toEmail, newPassword,nombuser) => {
+const sendRecoveryEmail = async (toEmail, newPassword, nombuser) => {
     try {
-        const data = await resend.emails.send({
+        const { data, error } = await resend.emails.send({
             from: 'GestApp <no-reply@macrocorpsystem.com>', 
             to: [toEmail],
             subject: '🔑 Recuperación de Contraseña - GestApp 👶🍼',
@@ -55,6 +55,12 @@ const sendRecoveryEmail = async (toEmail, newPassword,nombuser) => {
             </html>
             `
         });
+
+        // SI RESEND DETECTA UN ERROR (EJ: DOMINIO NO VALIDO O LIMITE ALCANZADO), ESTO LO HACE VISIBLE
+        if (error) {
+            throw new Error(error.message);
+        }
+
         return data;
     } catch (error) {
         throw error;

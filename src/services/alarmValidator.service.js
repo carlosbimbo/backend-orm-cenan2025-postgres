@@ -94,6 +94,7 @@ async function validateAlarm({ alarm, userId, fecha }) {
     totalSuplementosHoy: total,
     idalar: alarm.idalar,
     valid,
+    fecha,
   });
 
   return valid;

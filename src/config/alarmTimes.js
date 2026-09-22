@@ -9,9 +9,9 @@ module.exports = [
   */
 
   module.exports = [
-    { idalar: 1, hour: 19, minute: 16, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno", channelId: "v8_alerta_uno" },
-    { idalar: 2, hour: 19, minute: 21, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos", channelId: "v8_alerta_dos" },
-    { idalar: 3, hour: 19, minute: 26, message: "⏰ Gracias mamita, tenemos más hierro", sound: "alerta_tres", channelId: "v8_alerta_tres" },
-    { idalar: 4, hour: 19, minute: 31, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno", channelId: "v8_alerta_uno" },
-    { idalar: 5, hour: 19, minute: 36, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos", channelId: "v8_alerta_dos" },
+    { idalar: 1, hour: 19, minute: 23, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno", channelId: "v8_alerta_uno" },
+    { idalar: 2, hour: 19, minute: 29, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos", channelId: "v8_alerta_dos" },
+    { idalar: 3, hour: 19, minute: 36, message: "⏰ Gracias mamita, tenemos más hierro", sound: "alerta_tres", channelId: "v8_alerta_tres" },
+    { idalar: 4, hour: 19, minute: 41, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno", channelId: "v8_alerta_uno" },
+    { idalar: 5, hour: 19, minute: 46, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos", channelId: "v8_alerta_dos" },
   ];

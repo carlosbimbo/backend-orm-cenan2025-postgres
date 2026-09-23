@@ -1,20 +1,27 @@
 const axios = require("axios");
 
 async function sendPush({ token, alarm }) {
-  if (!token) return;
+  if (!token) {
+    console.log("⚠️ Token nulo, no se puede enviar push");
+    return { error: "Token nulo" };
+  }
 
-  await axios.post("https://exp.host/--/api/v2/push/send", {
-    to: token,
-    title: "💧👶 GestApp te recuerda",
-    body: alarm.message,
-    // IMPORTANTE: En iOS se usa el nombre del archivo con extensión
-    //sound: `${alarm.sound}.wav`, 
-    sound: alarm.sound, 
-    // IMPORTANTE: En Android el canal define el sonido
-    channelId: alarm.channelId, 
-    priority: "high",
-    data: { idalar: alarm.idalar },
-  });
+  try {
+    const response = await axios.post("https://exp.host/--/api/v2/push/send", {
+      to: token,
+      title: "💧👶 GestApp te recuerda",
+      body: alarm.message,
+      sound: alarm.sound,
+      channelId: alarm.channelId,
+      priority: "high",
+      data: { idalar: alarm.idalar },
+    });
+    
+    return response.data; // Retorna la respuesta de Expo (ej. { data: { status: "ok", id: "..." } })
+  } catch (error) {
+    console.error("❌ Error enviando a Expo HTTP:", error.message);
+    return error.response ? error.response.data : { error: error.message };
+  }
 }
 
 module.exports = { sendPush };

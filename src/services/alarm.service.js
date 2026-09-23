@@ -18,6 +18,7 @@ async function processAlarms() {
   const now = moment().tz("America/Lima");
   const fecha = now.format("YYYY-MM-DD");
 
+  console.log("==========================================");
   console.log("⏱ CRON ejecutado:", now.format());
 
   const users = await db.User.findAll({
@@ -30,13 +31,11 @@ async function processAlarms() {
   console.log(`👥 Usuarios con token: ${users.length}`);
 
   for (const alarm of alarmTimes) {
-
     // ⛔ AÚN NO LLEGA LA HORA DE ESTA ALARMA
     if (!alarmTimePassed(alarm, now)) continue;
 
     for (const user of users) {
-
-      // 🛡 anti-duplicado
+      // 🛡 Verificamos si ya existe un registro para esta alarma hoy
       const alreadySent = await db.AlarmExecution.findOne({
         where: {
           user_id: user.id,
@@ -45,32 +44,67 @@ async function processAlarms() {
         },
       });
 
-      if (alreadySent) continue;
+      let currentRetries = 0;
 
+      if (alreadySent) {
+        currentRetries = alreadySent.nro_reinte || 0;
+        
+        // Cortamos si ya alcanzó el máximo de 4 intentos
+        if (currentRetries >= 4) {
+          continue; 
+        }
+      }
+
+      // 🩺 Validamos reglas de negocio (Hemoglobina, si ya tomó la dosis, etc.)
       const valid = await validateAlarm({
         alarm,
         userId: user.id,
         fecha,
       });
 
-      if (!valid) continue;
+      // Si no es válido (ej. Ya registró su dosis de hierro), no enviamos y pasamos al siguiente
+      if (!valid) {
+        if (alreadySent && currentRetries < 4) {
+          console.log(`👍 User ${user.id} ya cumplió meta para alarma ${alarm.idalar}. Se frena reintento.`);
+        }
+        continue;
+      }
 
-      console.log(`📤 Enviando alarma ${alarm.idalar} a user ${user.id}`);
+      currentRetries += 1;
+      console.log(`📤 Enviando alarma ${alarm.idalar} a user ${user.id} | Intento: ${currentRetries}/4`);
 
-      await sendPush({
+      // Enviamos el push y capturamos la respuesta de los servidores de Expo
+      const expoResponse = await sendPush({
         token: user.expopushtoken,
         alarm,
       });
 
-      await db.AlarmExecution.create({
-        user_id: user.id,
-        idalar: alarm.idalar,
-        fecha,
-      });
+      // Parsear respuesta para la base de datos limitando a 500 caracteres
+      const responseString = expoResponse ? JSON.stringify(expoResponse).substring(0, 500) : null;
+      console.log(`📱 Respuesta Expo [User: ${user.id}]:`, responseString);
 
-      console.log(`✅ AlarmExecution guardado → user ${user.id}, alarma ${alarm.idalar}`);
+      // Si ya existía el registro, lo actualizamos sumando el reintento y actualizando la respuesta
+      if (alreadySent) {
+        await alreadySent.update({
+          nro_reinte: currentRetries,
+          respu_expo: responseString,
+          updated_at: now.toDate()
+        });
+        console.log(`🔄 AlarmExecution actualizado (Reintento ${currentRetries}) → user ${user.id}`);
+      } else {
+        // Es la primera vez que se envía hoy, creamos el registro
+        await db.AlarmExecution.create({
+          user_id: user.id, // Asumiendo que el ID uuid lo genera Sequelize o Postgres por defecto
+          idalar: alarm.idalar,
+          fecha,
+          nro_reinte: currentRetries,
+          respu_expo: responseString
+        });
+        console.log(`✅ AlarmExecution creado (Intento 1) → user ${user.id}`);
+      }
     }
   }
+  console.log("==========================================");
 }
 
 module.exports = { processAlarms };

@@ -30,6 +30,14 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: DataTypes.NOW,
       },
+      respu_expo: {
+        type: DataTypes.STRING(500),
+        allowNull: true
+      },
+      nro_reinte: {
+        type: DataTypes.INTEGER,
+        defaultValue: 1
+      }
     },
     {
       tableName: "alarm_execution",

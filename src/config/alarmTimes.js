@@ -17,11 +17,10 @@ module.exports = [
   ];
   */
 
-  // alarmTimes.js en tu Backend Node.js
   module.exports = [
-    { idalar: 1, hour: 15, minute: 30, message: "⏰ Mami ya toca mi hierro", channelId: "v10_alerta_uno" },
-    { idalar: 2, hour: 15, minute: 34, message: "⏰ Mami toma mi hierro por favor", channelId: "v10_alerta_dos" },
-    { idalar: 3, hour: 15, minute: 38, message: "⏰ Gracias mamita, tenemos más hierro", channelId: "v10_alerta_tres" },
-    { idalar: 4, hour: 15, minute: 42, message: "⏰ Mami ya toca mi hierro", channelId: "v10_alerta_uno" },
-    { idalar: 5, hour: 15, minute: 56, message: "⏰ Mami toma mi hierro por favor", channelId: "v10_alerta_dos" },
+    { idalar: 1, hour: 17, minute: 50, message: "⏰ Mami ya toca mi hierro", channelId: "v12_alerta_uno" },
+    { idalar: 2, hour: 17, minute: 54, message: "⏰ Mami toma mi hierro por favor", channelId: "v12_alerta_dos" },
+    { idalar: 3, hour: 17, minute: 58, message: "⏰ Gracias mamita, tenemos más hierro", channelId: "v12_alerta_tres" },
+    { idalar: 4, hour: 18, minute: 2, message: "⏰ Mami ya toca mi hierro", channelId: "v12_alerta_uno" },
+    { idalar: 5, hour: 18, minute: 6, message: "⏰ Mami toma mi hierro por favor", channelId: "v12_alerta_dos" },
   ];

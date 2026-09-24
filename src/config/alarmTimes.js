@@ -18,10 +18,10 @@ module.exports = [
   */
 
   // alarmTimes.js en tu Backend Node.js
-module.exports = [
-  { idalar: 1, hour: 13, minute: 20, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno.wav", channelId: "v9_alerta_uno" },
-  { idalar: 2, hour: 13, minute: 25, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos.wav", channelId: "v9_alerta_dos" },
-  { idalar: 3, hour: 13, minute: 30, message: "⏰ Gracias mamita, tenemos más hierro", sound: "alerta_tres.wav", channelId: "v9_alerta_tres" },
-  { idalar: 4, hour: 13, minute: 35, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno.wav", channelId: "v9_alerta_uno" },
-  { idalar: 5, hour: 13, minute: 40, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos.wav", channelId: "v9_alerta_dos" },
-];
+  module.exports = [
+    { idalar: 1, hour: 14, minute: 40, message: "⏰ Mami ya toca mi hierro", channelId: "v10_alerta_uno" },
+    { idalar: 2, hour: 14, minute: 44, message: "⏰ Mami toma mi hierro por favor", channelId: "v10_alerta_dos" },
+    { idalar: 3, hour: 14, minute: 48, message: "⏰ Gracias mamita, tenemos más hierro", channelId: "v10_alerta_tres" },
+    { idalar: 4, hour: 14, minute: 52, message: "⏰ Mami ya toca mi hierro", channelId: "v10_alerta_uno" },
+    { idalar: 5, hour: 14, minute: 56, message: "⏰ Mami toma mi hierro por favor", channelId: "v10_alerta_dos" },
+  ];

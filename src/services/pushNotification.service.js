@@ -8,8 +8,8 @@ async function sendPush({ token, alarm }) {
       to: token,
       title: "💧👶 GestApp te recuerda",
       body: alarm.message,
-      // CRÍTICO: No envíes el campo "sound" aquí para Android. 
-      // Al no enviarlo, Android respetará la configuración sonora del channelId.
+      // CRÍTICO: Expo Push API exige este campo con la extensión exacta
+      sound: alarm.sound, 
       channelId: alarm.channelId, 
       priority: "high",
       data: { idalar: alarm.idalar },

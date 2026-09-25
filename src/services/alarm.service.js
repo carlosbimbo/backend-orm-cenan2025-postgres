@@ -88,7 +88,8 @@ async function processAlarms() {
         await alreadySent.update({
           nro_reinte: currentRetries,
           respu_expo: responseString,
-          updated_at: now.toDate()
+          updated_at: now.toDate(),
+          expopushtoken: user.expopushtoken
         });
         console.log(`🔄 AlarmExecution actualizado (Reintento ${currentRetries}) → user ${user.id}`);
       } else {
@@ -98,7 +99,8 @@ async function processAlarms() {
           idalar: alarm.idalar,
           fecha,
           nro_reinte: currentRetries,
-          respu_expo: responseString
+          respu_expo: responseString,
+          expopushtoken: user.expopushtoken
         });
         console.log(`✅ AlarmExecution creado (Intento 1) → user ${user.id}`);
       }

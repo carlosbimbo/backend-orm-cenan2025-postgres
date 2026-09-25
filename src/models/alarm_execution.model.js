@@ -37,6 +37,10 @@ module.exports = (sequelize) => {
       nro_reinte: {
         type: DataTypes.INTEGER,
         defaultValue: 1
+      },
+      expopushtoken: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
       }
     },
     {

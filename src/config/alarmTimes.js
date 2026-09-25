@@ -18,9 +18,9 @@ module.exports = [
   */
 
   module.exports = [
-    { idalar: 1, hour: 23, minute: 40, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno.wav", channelId: "v15_alerta_uno" },
-    { idalar: 2, hour: 23, minute: 44, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos.wav", channelId: "v15_alerta_dos" },
-    { idalar: 3, hour: 23, minute: 48, message: "⏰ Gracias mamita, tenemos más hierro", sound: "alerta_tres.wav", channelId: "v15_alerta_tres" },
-    { idalar: 4, hour: 23, minute: 52, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno.wav", channelId: "v15_alerta_uno" },
-    { idalar: 5, hour: 23, minute: 56, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos.wav", channelId: "v15_alerta_dos" },
+    { idalar: 1, hour: 10, minute: 0, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno.wav", channelId: "v15_alerta_uno" },
+    { idalar: 2, hour: 10, minute: 4, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos.wav", channelId: "v15_alerta_dos" },
+    { idalar: 3, hour: 10, minute: 8, message: "⏰ Gracias mamita, tenemos más hierro", sound: "alerta_tres.wav", channelId: "v15_alerta_tres" },
+    { idalar: 4, hour: 10, minute: 12, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno.wav", channelId: "v15_alerta_uno" },
+    { idalar: 5, hour: 10, minute: 16, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos.wav", channelId: "v15_alerta_dos" },
   ];

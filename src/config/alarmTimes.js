@@ -18,9 +18,9 @@ module.exports = [
   */
 
   module.exports = [
-    { idalar: 1, hour: 14, minute: 20, message: "⏰ Mami ya toca mi hierro", channelId: "v19_alerta_uno" },
-    { idalar: 2, hour: 14, minute: 24, message: "⏰ Mami toma mi hierro por favor", channelId: "v19_alerta_dos" },
-    { idalar: 3, hour: 14, minute: 28, message: "⏰ Gracias mamita, tenemos más hierro", channelId: "v19_alerta_tres" },
-    { idalar: 4, hour: 14, minute: 32, message: "⏰ Mami ya toca mi hierro", channelId: "v19_alerta_uno" },
-    { idalar: 5, hour: 14, minute: 36, message: "⏰ Mami toma mi hierro por favor", channelId: "v19_alerta_dos" },
+    { idalar: 1, hour: 17, minute: 20, message: "⏰ Mami ya toca mi hierro", channelId: "v19_alerta_uno" },
+    { idalar: 2, hour: 17, minute: 24, message: "⏰ Mami toma mi hierro por favor", channelId: "v19_alerta_dos" },
+    { idalar: 3, hour: 17, minute: 28, message: "⏰ Gracias mamita, tenemos más hierro", channelId: "v19_alerta_tres" },
+    { idalar: 4, hour: 17, minute: 32, message: "⏰ Mami ya toca mi hierro", channelId: "v19_alerta_uno" },
+    { idalar: 5, hour: 17, minute: 36, message: "⏰ Mami toma mi hierro por favor", channelId: "v19_alerta_dos" },
   ];

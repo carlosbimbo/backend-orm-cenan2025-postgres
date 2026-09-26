@@ -2,7 +2,7 @@
 module.exports = [
     { idalar: 1, hour: 23, minute: 30, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno", channelId: "v8_alerta_uno" },
     { idalar: 2, hour: 11, minute: 0, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos", channelId: "v8_alerta_dos" },
-    { idalar: 3, hour: 17, minute: 30, message: "⏰ Gracias mamita, tenemos más hierro", sound: "alerta_tres", channelId: "v8_alerta_tres" },
+    { idalar: 3, hour: 18, minute: 30, message: "⏰ Gracias mamita, tenemos más hierro", sound: "alerta_tres", channelId: "v8_alerta_tres" },
     { idalar: 4, hour: 15, minute: 30, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno", channelId: "v8_alerta_uno" },
     { idalar: 5, hour: 16, minute: 0, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos", channelId: "v8_alerta_dos" },
   ];
@@ -18,9 +18,9 @@ module.exports = [
   */
 
   module.exports = [
-    { idalar: 1, hour: 17, minute: 20, message: "⏰ Mami ya toca mi hierro", channelId: "v19_alerta_uno" },
-    { idalar: 2, hour: 17, minute: 24, message: "⏰ Mami toma mi hierro por favor", channelId: "v19_alerta_dos" },
-    { idalar: 3, hour: 17, minute: 28, message: "⏰ Gracias mamita, tenemos más hierro", channelId: "v19_alerta_tres" },
-    { idalar: 4, hour: 17, minute: 32, message: "⏰ Mami ya toca mi hierro", channelId: "v19_alerta_uno" },
-    { idalar: 5, hour: 17, minute: 36, message: "⏰ Mami toma mi hierro por favor", channelId: "v19_alerta_dos" },
+    { idalar: 1, hour: 18, minute: 40, message: "⏰ Mami ya toca mi hierro", channelId: "v19_alerta_uno" },
+    { idalar: 2, hour: 18, minute: 44, message: "⏰ Mami toma mi hierro por favor", channelId: "v19_alerta_dos" },
+    { idalar: 3, hour: 18, minute: 48, message: "⏰ Gracias mamita, tenemos más hierro", channelId: "v19_alerta_tres" },
+    { idalar: 4, hour: 18, minute: 52, message: "⏰ Mami ya toca mi hierro", channelId: "v19_alerta_uno" },
+    { idalar: 5, hour: 18, minute: 56, message: "⏰ Mami toma mi hierro por favor", channelId: "v19_alerta_dos" },
   ];

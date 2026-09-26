@@ -8,15 +8,15 @@ async function sendPush({ token, alarm }) {
       to: token,
       title: "💧👶 GestApp te recuerda",
       body: alarm.message,
-      // ❌ SE ELIMINA LA PROPIEDAD "sound" POR COMPLETO
+      // 🔴 CRÍTICO: No enviar 'sound' aquí. El canal de Android ya sabe qué hacer.
       channelId: alarm.channelId, 
-      priority: "high",
+      priority: "high", 
       data: { idalar: alarm.idalar },
     });
     
     return response.data;
   } catch (error) {
-    console.error("❌ Error enviando a Expo HTTP:", error.message);
+    console.error("❌ Error enviando a Expo:", error.message);
     return error.response ? error.response.data : { error: error.message };
   }
 }

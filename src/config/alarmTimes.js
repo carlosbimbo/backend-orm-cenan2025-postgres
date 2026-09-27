@@ -1,26 +1,43 @@
-/*
 module.exports = [
-    { idalar: 1, hour: 23, minute: 30, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno", channelId: "v8_alerta_uno" },
-    { idalar: 2, hour: 11, minute: 0, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos", channelId: "v8_alerta_dos" },
-    { idalar: 3, hour: 18, minute: 30, message: "⏰ Gracias mamita, tenemos más hierro", sound: "alerta_tres", channelId: "v8_alerta_tres" },
-    { idalar: 4, hour: 15, minute: 30, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno", channelId: "v8_alerta_uno" },
-    { idalar: 5, hour: 16, minute: 0, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos", channelId: "v8_alerta_dos" },
-  ];
-  */
-/*
-  module.exports = [
-    { idalar: 1, hour: 11, minute: 15, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno", channelId: "v8_alerta_uno" },
-    { idalar: 2, hour: 11, minute: 23, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos", channelId: "v8_alerta_dos" },
-    { idalar: 3, hour: 11, minute: 24, message: "⏰ Gracias mamita, tenemos más hierro", sound: "alerta_tres", channelId: "v8_alerta_tres" },
-    { idalar: 4, hour: 11, minute: 29, message: "⏰ Mami ya toca mi hierro", sound: "alerta_uno", channelId: "v8_alerta_uno" },
-    { idalar: 5, hour: 11, minute: 33, message: "⏰ Mami toma mi hierro por favor", sound: "alerta_dos", channelId: "v8_alerta_dos" },
-  ];
-  */
 
-  module.exports = [
-    { idalar: 1, hour: 18, minute: 40, message: "⏰ Mami ya toca mi hierro", channelId: "v19_alerta_uno" },
-    { idalar: 2, hour: 18, minute: 44, message: "⏰ Mami toma mi hierro por favor", channelId: "v19_alerta_dos" },
-    { idalar: 3, hour: 18, minute: 48, message: "⏰ Gracias mamita, tenemos más hierro", channelId: "v19_alerta_tres" },
-    { idalar: 4, hour: 18, minute: 52, message: "⏰ Mami ya toca mi hierro", channelId: "v19_alerta_uno" },
-    { idalar: 5, hour: 18, minute: 56, message: "⏰ Mami toma mi hierro por favor", channelId: "v19_alerta_dos" },
-  ];
+  {
+    idalar: 1,
+    hour: 20,
+    minute: 20,
+    message: "⏰ Mami ya toca mi hierro",
+    channelId: "gestapp_alerta_uno_v20"
+  },
+
+  {
+    idalar: 2,
+    hour: 20,
+    minute: 24,
+    message: "⏰ Mami toma mi hierro por favor",
+    channelId: "gestapp_alerta_dos_v20"
+  },
+
+  {
+    idalar: 3,
+    hour: 20,
+    minute: 28,
+    message: "⏰ Gracias mamita, tenemos más hierro",
+    channelId: "gestapp_alerta_tres_v20"
+  },
+
+  {
+    idalar: 4,
+    hour: 20,
+    minute: 32,
+    message: "⏰ Mami ya toca mi hierro",
+    channelId: "gestapp_alerta_uno_v20"
+  },
+
+  {
+    idalar: 5,
+    hour: 20,
+    minute: 36,
+    message: "⏰ Mami toma mi hierro por favor",
+    channelId: "gestapp_alerta_dos_v20"
+  }
+
+];

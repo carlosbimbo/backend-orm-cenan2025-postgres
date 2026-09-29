@@ -302,4 +302,24 @@ const getUserFullDataByEmail = async (req, res) => {
 	}
   };
 
-module.exports = { signin, signup, simpleUserauthentication, findUserWithPassword, verify,createUserapp,udpUserapp,saveOrupdUserapp,getUserFullData,saveOrupdUserSync,saveExpoPushToken,recoverPassword,getUserFullDataByEmail };
+  //add 29092026
+  const saveExpoPushTokenByUsername = async (req, res) => {
+	/* #swagger.tags = ['USUARIO']
+	   #swagger.description = 'Endpoint para guardar el token para las notificaciones usando el username' */
+	try {
+	  const { username, expopushtoken } = req.body;
+  
+	  const user = await usuarioService.updateExpoPushTokenByUsername(username, expopushtoken);
+  
+	  return res.status(200).json({
+		message: "Token actualizado correctamente por username",
+		user,
+	  });
+	} catch (error) {
+	  return res.status(400).json({
+		error: error.message,
+	  });
+	}
+  };
+
+module.exports = { signin, signup, simpleUserauthentication, findUserWithPassword, verify,createUserapp,udpUserapp,saveOrupdUserapp,getUserFullData,saveOrupdUserSync,saveExpoPushToken,recoverPassword,getUserFullDataByEmail,saveExpoPushTokenByUsername };

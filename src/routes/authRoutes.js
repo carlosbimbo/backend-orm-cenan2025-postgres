@@ -37,6 +37,7 @@ router.post("/saveuserapp", authMiddleware.verifyToken, authController.saveOrupd
 router.post("/getalldatauser", authMiddleware.verifyToken, authController.getUserFullData);
 router.post("/syncalluser", authMiddleware.verifyToken, authController.saveOrupdUserSync);
 router.post("/getalldatauserbyemail", authController.getUserFullDataByEmail);
+router.post("/save-userexpotoken-byusername", authController.saveExpoPushTokenByUsername);
 /*fin for user appcenan*/
 
 /*for user etapagesta*/

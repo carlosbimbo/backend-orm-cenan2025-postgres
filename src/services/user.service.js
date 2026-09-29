@@ -567,6 +567,45 @@ const getUserDataByEmail = async (email) => {
 };
 //fin retrieve userdata by email 04072026
 
+//add 29092026
+const updateExpoPushTokenByUsername = async (username, expopushtoken) => {
+  if (!username) {
+    throw new Error("El parámetro username es obligatorio");
+  }
+
+  if (!expopushtoken) {
+    throw new Error("El parámetro expopushtoken es obligatorio");
+  }
+
+  const cleanUsername = username.trim().toLowerCase();
+
+  const [affectedRows] = await db.User.update(
+    { 
+      expopushtoken,
+      updated_at: db.Sequelize.literal("now() AT TIME ZONE 'America/Lima'")
+    },
+    {
+      where: db.Sequelize.where(
+        db.Sequelize.fn('lower', db.Sequelize.col('username')),
+        cleanUsername
+      ),
+      silent: false,
+    }
+  );
+
+  if (affectedRows === 0) {
+    throw new Error("Usuario no encontrado o no se pudo actualizar");
+  }
+
+  return await db.User.findOne({
+    where: db.Sequelize.where(
+      db.Sequelize.fn('lower', db.Sequelize.col('username')),
+      cleanUsername
+    ),
+    attributes: ["id", "username", "expopushtoken", "updated_at"],
+  });
+};
+
 module.exports = {
   getAll,
   findUserById,
@@ -581,4 +620,5 @@ module.exports = {
   saveOrUpdateUserArray,
   updateExpoPushTokenById,
   getUserDataByEmail,
+  updateExpoPushTokenByUsername,
 };

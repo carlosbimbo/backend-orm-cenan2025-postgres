@@ -16,6 +16,7 @@ function model(sequelize) {
     calcu_nrodias_parto: { type: DataTypes.INTEGER, allowNull: true },
     calcu_fecaprox_parto: { type: DataTypes.STRING(10), allowNull: true },
     eco_fechaori: { type: DataTypes.STRING(10), allowNull: true },
+    nroseman_real: { type: DataTypes.INTEGER, allowNull: true },
   };
 
   const options = {

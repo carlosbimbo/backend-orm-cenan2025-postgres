@@ -34,6 +34,26 @@ function model(sequelize) {
       type: DataTypes.STRING(200),
       allowNull: true,
       field: "destinationuri", 
+    },   
+    feccre_movil: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },   
+    horacre_movil: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },   
+    fecupd_movil: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },   
+    horaupd_movil: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },   
+    appversion: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
     },
   };
 

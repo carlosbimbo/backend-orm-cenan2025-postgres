@@ -68,6 +68,26 @@ function model(sequelize) {
     email: {
       type: DataTypes.STRING(100),
       allowNull: true,
+    },   
+    feccre_movil: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },   
+    horacre_movil: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },   
+    fecupd_movil: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },   
+    horaupd_movil: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },   
+    appversion: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
     },
   };
 

@@ -25,6 +25,18 @@ function model(sequelize) {
     fec_diagesta: {
       type: DataTypes.STRING(10),
       allowNull: true,
+    },   
+    feccre_movil: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },   
+    horacre_movil: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },   
+    appversion: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
     },
   };
 

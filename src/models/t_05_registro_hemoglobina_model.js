@@ -45,6 +45,18 @@ function model(sequelize) {
     obs: {
       type: DataTypes.STRING(1000),
       allowNull: true,
+    },   
+    feccre_movil: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },   
+    horacre_movil: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },   
+    appversion: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
     },
   };
 

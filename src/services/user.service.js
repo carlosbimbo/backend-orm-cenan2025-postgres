@@ -391,6 +391,7 @@ const getUserDataByUsername = async (username) => {
                     feccre_movil: d.feccre_movil,
                     horacre_movil: d.horacre_movil,                   
                     appversion: d.appversion,
+                    video_asignado: d.video_asignado,                    
                   })
                 ),
                 _cantidad: user.diasGestacion.length,
@@ -587,6 +588,7 @@ const getUserDataByEmail = async (email) => {
                     feccre_movil: d.feccre_movil,
                     horacre_movil: d.horacre_movil,                   
                     appversion: d.appversion,
+                    video_asignado: d.video_asignado,
                   })
                 ),
                 _cantidad: user.diasGestacion.length,

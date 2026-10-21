@@ -38,8 +38,12 @@ function model(sequelize) {
       type: DataTypes.STRING(10),
       allowNull: true,
     },
+    video_asignado: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   };
-
+  
   const options = {
     freezeTableName: true, 
     timestamps: false,     

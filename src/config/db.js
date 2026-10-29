@@ -9,6 +9,7 @@ const t05_agendagestaModel = require("../models/t_05_agenda_gestacional_model");
 const t05_diasgestaModel = require("../models/t_05_dias_gestacion_model");
 const alarmExecutionModel = require("../models/alarm_execution.model");
 const t05_regishemogloModel = require("../models/t_05_registro_hemoglobina_model");
+const t05_valoracionmenuModel = require("../models/t_05_valoracion_ruleta_menu_model");
 
 require("dotenv").config();
 
@@ -33,6 +34,7 @@ db.T05_suplement = t05_suplementModel(sequelize);
 db.T05_agenda_gestacional = t05_agendagestaModel(sequelize);
 db.T05_dias_gestacion = t05_diasgestaModel(sequelize);
 db.AlarmExecution = alarmExecutionModel(sequelize);
+db.T05_valoracionmenu = t05_valoracionmenuModel(sequelize);
 
 db.User.hasMany(db.T05_etapagesta, { foreignKey: "id", as: "etapasGestacionales" });
 db.User.hasMany(db.T05_regisevent, { foreignKey: "iduser", as: "registroEventos" });
@@ -40,6 +42,7 @@ db.User.hasMany(db.T05_suplement, { foreignKey: "iduser", as: "registroSuplement
 db.User.hasMany(db.T05_agenda_gestacional, { foreignKey: "id", as: "agendaGestacional" });
 db.User.hasMany(db.T05_dias_gestacion, { foreignKey: "iduser", as: "diasGestacion" });
 db.User.hasMany(db.T05_regishemoglo, { foreignKey: "iduser", as: "registroHemoglo" });
+db.User.hasMany(db.T05_valoracionmenu, { foreignKey: "iduser", as: "valoracionMenu" });
 
 db.User.hasMany(db.AlarmExecution, {
   foreignKey: "user_id",
@@ -53,6 +56,7 @@ db.T05_suplement.belongsTo(db.User, { foreignKey: "iduser", as: "usuario" });
 db.T05_agenda_gestacional.belongsTo(db.User, { foreignKey: "id", as: "usuario" });
 db.T05_dias_gestacion.belongsTo(db.User, { foreignKey: "iduser", as: "usuario" });
 db.T05_regishemoglo.belongsTo(db.User, { foreignKey: "iduser", as: "usuario" });
+db.T05_valoracionmenu.belongsTo(db.User, { foreignKey: "iduser", as: "usuario" });
 
 db.AlarmExecution.belongsTo(db.User, {
   foreignKey: "user_id",

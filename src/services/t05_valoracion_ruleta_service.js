@@ -2,13 +2,13 @@ const db = require("../config/db"); // Ajusta según tu configuración
 const { sanitizeEmptyValues } = require("../utils/sanitizeEmptyValues"); // Si lo utilizas en tu proyecto
 
 const findValoracionByIds = async (iduser, idmenu) => {
-  return await db.t_05_valoracion_ruleta_menu.findOne({
+  return await db.T05_valoracionmenu.findOne({
     where: { iduser, idmenu },
   });
 };
 
 const countLikesByMenu = async (idmenu) => {
-  return await db.t_05_valoracion_ruleta_menu.count({
+  return await db.T05_valoracionmenu.count({
     where: { 
       idmenu: idmenu,
       flag_valora: 1 // 1 es que le gustó
@@ -29,11 +29,11 @@ const saveOrUpdateValoracion = async (data) => {
     const existingValoracion = await findValoracionByIds(iduser, idmenu);
 
     if (existingValoracion) {
-      await db.t_05_valoracion_ruleta_menu.update(cleanData, {
+      await db.T05_valoracionmenu.update(cleanData, {
         where: { iduser, idmenu },
       });
     } else {
-      await db.t_05_valoracion_ruleta_menu.create(cleanData);
+      await db.T05_valoracionmenu.create(cleanData);
     }
 
     // Retornar el total de likes actualizado para este menú

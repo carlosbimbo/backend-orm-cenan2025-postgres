@@ -400,9 +400,9 @@ const getUserDataByUsername = async (username) => {
               : undefined;
             
     const valoraMenu =
-        user.valoraMenu && user.valoraMenu.length > 0
+        user.valoracionMenu && user.valoracionMenu.length > 0
           ? {
-            valoraMenu: user.valoraMenu.map((d) =>
+            valoracionMenu: user.valoracionMenu.map((d) =>
                   cleanObject({
                     iduser: d.iduser,
                     idmenu: d.idmenu,
@@ -414,7 +414,7 @@ const getUserDataByUsername = async (username) => {
                     appversion: d.appversion,                                     
                   })
                 ),
-                _cantidad: user.valoraMenu.length,
+                _cantidad: user.valoracionMenu.length,
               }
             : undefined;
 
@@ -618,9 +618,9 @@ const getUserDataByEmail = async (email) => {
             : undefined;
 
     const valoraMenu =
-            user.valoraMenu && user.valoraMenu.length > 0
+            user.valoracionMenu && user.valoracionMenu.length > 0
               ? {
-                valoraMenu: user.valoraMenu.map((d) =>
+                valoracionMenu: user.valoracionMenu.map((d) =>
                       cleanObject({
                         iduser: d.iduser,
                         idmenu: d.idmenu,
@@ -632,7 +632,7 @@ const getUserDataByEmail = async (email) => {
                         appversion: d.appversion,                                     
                       })
                     ),
-                    _cantidad: user.valoraMenu.length,
+                    _cantidad: user.valoracionMenu.length,
                   }
                 : undefined;            
 

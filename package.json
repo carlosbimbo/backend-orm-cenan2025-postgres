@@ -47,7 +47,8 @@
     "sequelize": "^6.37.3",
     "swagger-autogen": "^2.23.4",
     "swagger-ui-express": "^4.1.4",
-    "tedious": "^16.6.1"
+    "tedious": "^16.6.1",
+    "ws": "^8.22.0"
   },
   "devDependencies": {
     "sequelize-cli": "^6.6.2"

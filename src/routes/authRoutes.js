@@ -14,8 +14,8 @@ const t05diasGestacionController = require("../controllers/t_05_dias_gestacion_c
 const uploadCtrl = require("../controllers/upload.controller");
 const fotosCtrl = require("../controllers/fotos.controller");
 const alarmCtrl = require("../controllers/alarm.controller");
-
 const t05regisHemoglobinaController = require("../controllers/t_05_registro_hemoglobina_controller");
+const t05valoracionController = require("../controllers/t05_valoracion_ruleta_controller");
 
 const router = express.Router();
 
@@ -76,6 +76,11 @@ router.post("/updregishemo", authMiddleware.verifyToken, t05regisHemoglobinaCont
 router.post("/saveregishemo", authMiddleware.verifyToken, t05regisHemoglobinaController.saveOrUpdateT05regisHemo);
 router.post("/syncallregishemo", authMiddleware.verifyToken, t05regisHemoglobinaController.saveOrupdRegisHemoSync);
 /*fin for registro de Hemoglo*/
+
+/* for valoracion menu ruleta */
+router.get("/likesmenu/:idmenu", authMiddleware.verifyToken, t05valoracionController.getLikesByMenu);
+router.post("/savelikemenu", authMiddleware.verifyToken, t05valoracionController.saveOrUpdValoracionMenu);
+/* fin for valoracion menu ruleta */
 
 router.post("/recover-password", authController.recoverPassword);
 

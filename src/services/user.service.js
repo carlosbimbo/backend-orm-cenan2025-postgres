@@ -238,6 +238,7 @@ const getUserDataByUsername = async (username) => {
         { model: db.T05_agenda_gestacional, as: "agendaGestacional", required: false, separate: true },
         { model: db.T05_dias_gestacion, as: "diasGestacion", required: false, separate: true },
         { model: db.T05_regishemoglo, as: "registroHemoglo", required: false, separate: true },
+        { model: db.T05_valoracionmenu, as: "valoracionMenu", required: false, separate: true },
       ],
     });
 
@@ -376,25 +377,44 @@ const getUserDataByUsername = async (username) => {
               ),
               _cantidad: user.agendaGestacional.length,
             }
-          : undefined; 
-
-    const diasGestacion =
-        user.diasGestacion && user.diasGestacion.length > 0
-          ? {
+          : undefined;    
+          
+        const diasGestacion =
+          user.diasGestacion && user.diasGestacion.length > 0
+            ? {
               diasGestacion: user.diasGestacion.map((d) =>
+                    cleanObject({
+                      id_diasg: d.id_diasg,
+                      iduser: d.iduser,
+                      nroseman: d.nroseman,
+                      fec_seman: d.fec_seman,
+                      fec_diagesta: d.fec_diagesta,
+                      feccre_movil: d.feccre_movil,
+                      horacre_movil: d.horacre_movil,                   
+                      appversion: d.appversion,
+                      video_asignado: d.video_asignado,                    
+                    })
+                  ),
+                  _cantidad: user.diasGestacion.length,
+                }
+              : undefined;
+            
+    const valoraMenu =
+        user.valoraMenu && user.valoraMenu.length > 0
+          ? {
+            valoraMenu: user.valoraMenu.map((d) =>
                   cleanObject({
-                    id_diasg: d.id_diasg,
                     iduser: d.iduser,
-                    nroseman: d.nroseman,
-                    fec_seman: d.fec_seman,
-                    fec_diagesta: d.fec_diagesta,
+                    idmenu: d.idmenu,
+                    flag_valora: d.flag_valora,
                     feccre_movil: d.feccre_movil,
-                    horacre_movil: d.horacre_movil,                   
-                    appversion: d.appversion,
-                    video_asignado: d.video_asignado,                    
+                    horacre_movil: d.horacre_movil,
+                    fecupd_movil: d.fecupd_movil,
+                    horaupd_movil: d.horaupd_movil,                   
+                    appversion: d.appversion,                                     
                   })
                 ),
-                _cantidad: user.diasGestacion.length,
+                _cantidad: user.valoraMenu.length,
               }
             : undefined;
 
@@ -406,6 +426,7 @@ const getUserDataByUsername = async (username) => {
       ...(suplementos && { t_05_registro_suplementos: suplementos }),
       ...(agendaGestacional && { t_05_agenda_gestacional: agendaGestacional }),
       ...(diasGestacion && { t_05_dias_gestacion: diasGestacion }),
+      ...(valoraMenu && { t_05_valoracion_ruleta_menu: valoraMenu }),
     });
 
     return { CENAN2025 };
@@ -435,6 +456,7 @@ const getUserDataByEmail = async (email) => {
         { model: db.T05_agenda_gestacional, as: "agendaGestacional", required: false },
         { model: db.T05_dias_gestacion, as: "diasGestacion", required: false },
         { model: db.T05_regishemoglo, as: "registroHemoglo", required: false },
+        { model: db.T05_valoracionmenu, as: "valoracionMenu", required: false },
       ],
     });
 
@@ -595,6 +617,25 @@ const getUserDataByEmail = async (email) => {
               }
             : undefined;
 
+    const valoraMenu =
+            user.valoraMenu && user.valoraMenu.length > 0
+              ? {
+                valoraMenu: user.valoraMenu.map((d) =>
+                      cleanObject({
+                        iduser: d.iduser,
+                        idmenu: d.idmenu,
+                        flag_valora: d.flag_valora,
+                        feccre_movil: d.feccre_movil,
+                        horacre_movil: d.horacre_movil,
+                        fecupd_movil: d.fecupd_movil,
+                        horaupd_movil: d.horaupd_movil,                   
+                        appversion: d.appversion,                                     
+                      })
+                    ),
+                    _cantidad: user.valoraMenu.length,
+                  }
+                : undefined;            
+
     const CENAN2025 = cleanObject({
       ...(etapaGesta && { t_05_etapa_gestacional: etapaGesta }),
       ...(userInfo && { users: userInfo }),
@@ -603,6 +644,7 @@ const getUserDataByEmail = async (email) => {
       ...(suplementos && { t_05_registro_suplementos: suplementos }),
       ...(agendaGestacional && { t_05_agenda_gestacional: agendaGestacional }),
       ...(diasGestacion && { t_05_dias_gestacion: diasGestacion }),
+      ...(valoraMenu && { t_05_valoracion_ruleta_menu: valoraMenu }),
     });
 
     return { CENAN2025 };
